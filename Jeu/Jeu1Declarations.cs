@@ -40,7 +40,8 @@ public partial class Snake
     /// </summary>
     public struct ScorePartie
     {
-        // A COMPLETER
+        public string pseudo;
+        public int points; 
     }
 
     /// <summary>
