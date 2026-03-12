@@ -121,6 +121,8 @@ public partial class Snake
 
     // Constantes pour la vitesse minimum et maximum (de 1 à 100)
     // A COMPLETER
+    const int VITESSE_MIN = 1;
+    const int VITESSE_MAX = 100;
 
     // Constantes pour les longueurs de pseudos des joueurs (de 3 à 20)
     // A COMPLETER
