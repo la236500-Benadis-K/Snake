@@ -126,6 +126,8 @@ public partial class Snake
 
     // Constantes pour les longueurs de pseudos des joueurs (de 3 à 20)
     // A COMPLETER
+    const int LONGUEUR_MIN_PSEUDO = 3;
+    const int LONGUEUR_MAX_PSEUDO = 20;
 
     // ********************************************* //
     // ************* CONFIGURATION ***************** //
