@@ -41,7 +41,7 @@ public partial class Snake
     public struct ScorePartie
     {
         public string pseudo;
-        public int points; 
+        public int scores; 
     }
 
     /// <summary>
@@ -103,6 +103,15 @@ public partial class Snake
     // Caractères pour la bordure autour du jeu (pour les calculs et l'affichage) 
     // Exemples de possibilités : ▐ ▌ ▄ ▀ ▗ ▖ ▝ ▘
     // A COMPLETER
+    const string COIN_HAUT_DROIT = "▝";
+    const string COINT_HAUT_GAUCHE = "▘";
+    const string BORD_DROIT = "▐";
+    const string BORD_GAUCHE = "▌";
+    const string COIN_BAS_DROIT = "▗";
+    const string COIN_BAS_GAUCHE = "▖";
+    const string BORD_HAUT = "▀";
+    const string BORD_BAS = "▄";
+
 
     // Dessins de anneaux du serpent
     // Attention: chaque anneaux utilise 2 caractères de large pour que ce soit carré, 
