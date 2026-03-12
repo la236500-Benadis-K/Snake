@@ -9,7 +9,10 @@ public partial class Snake
     // Quatre directions possibles pour les déplacements du serpent
     public enum Directions
     {
-        // A COMPLETER
+        Haut,
+        Bas,
+        Gauche,
+        Droite
     }
 
     // ********************************************* //
