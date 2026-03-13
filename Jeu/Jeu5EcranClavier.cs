@@ -53,6 +53,7 @@ public partial class Snake
         AfficherTexteCentre("██╔═══╝   ╚██╔╝     ██║   ██╔══██║██║  ██║██║╚████║");
         AfficherTexteCentre("██║        ██║      ██║   ██║  ██║╚█████╔╝██║ ╚███║");
         AfficherTexteCentre("╚═╝        ╚═╝      ╚═╝   ╚═╝  ╚═╝ ╚════╝ ╚═╝  ╚══╝");
+        Console.WriteLine();
     }
 
 
@@ -139,6 +140,23 @@ public partial class Snake
 
         // MATIERE A UTILISER
         // - affichage à la Console
+
+        EffacerEtAfficherGrandTitre();
+
+        Console.WriteLine(@"Le but du jeu est de faire avancer un serpent python en lui faisant manger
+des gâteaux qui le font grandir pour atteindre la plus grande taille
+possible. La vitesse de déplacement augmente régulièrement et ne redevient
+lente que lorsque le serpent mange un gâteau.
+Les commandes de déplacement sont les flèches du clavier.
+La partie se termine si le serpent cogne un bord ou se mord lui-même.
+À la fin d'une partie, on peut donner son pseudo pour sauver son score.
+On peut également visualiser les meilleurs scores
+et changer la configuration du jeu (taille et couleurs)");
+
+        Console.WriteLine("Enfoncez ENTER pour revenir au menu...");
+
+        AttendreTouche();
+
     }
 
     /// <summary>
