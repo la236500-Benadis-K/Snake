@@ -32,6 +32,14 @@ public partial class Snake
 
         // MATIERE A UTILISER
         // - lecture de clavier de la Console
+
+        ConsoleKey touche;
+
+        do
+        {
+            touche = Console.ReadKey(true).Key;
+        }
+        while (touche != ConsoleKey.Enter);
     }
 
     /// <summary>
