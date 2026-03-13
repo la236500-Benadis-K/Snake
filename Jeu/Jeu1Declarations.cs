@@ -46,7 +46,7 @@ public partial class Snake
     public struct ScorePartie
     {
         public string pseudo;
-        public int scores;
+        public int points;
     }
 
     /// <summary>
@@ -61,6 +61,7 @@ public partial class Snake
     {
         // Liste des anneaux du serpent (anneau = case à l'écran), dans l'ordre de la tête à la queue
         // A COMPLETER
+        public List<CaseDeJeu> Serpent;
 
         // Indicateur de la queue du serpent à enlever après l'avoir effacée
         // Algorithme = 
@@ -68,33 +69,41 @@ public partial class Snake
         // - effacer la queue sauf si cookie mangé car alors le serpent grandit
         // - enlever la queue de la liste sauf si cookie mangé
         // A COMPLETER
+        public bool EnleverQueue;
+
 
         // Indicateur de la queue du serpent à effacer à l'affichage
         // Algorithme = écrire un espace pour effacer la queue, sauf si la tête prend la place de la queue
         // A COMPLETER
+        public CaseDeJeu EffacerQueue;
 
         // Position du gâteau à attraper
         // A COMPLETER
-
+        public CaseDeJeu PositionGateau;
         // Direction de déplacement du serpent
         // A COMPLETER
-
+        public Directions DirectionSerpent;
         // Vitesse du jeu. 
         // Le jeu accélère quand le serpent avance et redevient lent après avoir mangé un gâteau.
         // A COMPLETER
+        public int Vitesse;
 
         // Score d'une partie (nombre de gâteaux attrapés)
         // A COMPLETER
+        public int Score;
 
         // Mesure du temps de la partie
         // A COMPLETER
+        public int TempsPartie;
 
         // Mesure du temps de calcul pour l'affichage
         // A COMPLETER
+        public int TempsAffichage;
 
         // Indique que le jeu (programme principal) est en cours
         // Quand il devient false, on quitte complètement le jeu
         // A COMPLETER
+        public bool JeuEnCours;
 
         // Indique qu'une partie est en cours
         // Un jeu peut comporter plusieurs parties et  
