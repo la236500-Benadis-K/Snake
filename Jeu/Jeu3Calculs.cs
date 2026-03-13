@@ -28,8 +28,10 @@ public partial class Snake
 
         // MATIERE A UTILISER
         // - mettre la culture à fr-BE
+        Partie partie = new();
+        return partie;
 
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     /// <summary>
