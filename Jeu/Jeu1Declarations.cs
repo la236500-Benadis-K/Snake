@@ -25,11 +25,16 @@ public partial class Snake
     public struct CaseDeJeu
     {
         // A COMPLETER
+        int x;
+        int y;
+
 
         // Constructeur de la structure
         public CaseDeJeu(int x, int y) : this()
         {
             // A COMPLETER
+            this.x = x;
+            this.y = y;
         }
 
     }
@@ -41,7 +46,7 @@ public partial class Snake
     public struct ScorePartie
     {
         public string pseudo;
-        public int scores; 
+        public int scores;
     }
 
     /// <summary>
