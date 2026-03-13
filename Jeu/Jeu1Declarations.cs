@@ -159,7 +159,7 @@ public partial class Snake
     // A COMPLETER
     public static int LARGEUR_TERRAIN = 40;
     public static int HAUTEUR_TERRAIN = 20;
-    
+
     // Caractères des gâteaux à manger (au minimum un dessin de gâteau)
     // Exemple: ⬤
     // A COMPLETER
@@ -170,7 +170,7 @@ public partial class Snake
     public static ConsoleColor COULEUR_GATEAU = ConsoleColor.White;
     public static ConsoleColor COULEUR_SERPENT = ConsoleColor.White;
     public static ConsoleColor COULEUR_BORDURE = ConsoleColor.White;
-    public static ConsoleColor COULEUR_CONSOLE = ConsoleColor.Black;
+    public static ConsoleColor COULEUR_FOND = ConsoleColor.Black;
 
 
     // Valeur dérivées de la configuration
