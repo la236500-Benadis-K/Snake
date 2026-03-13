@@ -115,7 +115,13 @@ public partial class Snake
         // - lecture de touches du clavier de la Console
         // - switch
 
-        throw new NotImplementedException();
+        EffacerEtAfficherGrandTitre();
+        Console.WriteLine();
+
+        AfficherTexteCentre("Menu");
+
+        return false;
+        //throw new NotImplementedException();
     }
 
     /// <summary>
