@@ -25,8 +25,8 @@ public partial class Snake
     public struct CaseDeJeu
     {
         // A COMPLETER
-        int x;
-        int y;
+        public int x;
+        public int y;
 
 
         // Constructeur de la structure
