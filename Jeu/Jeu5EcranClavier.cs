@@ -124,31 +124,59 @@ public partial class Snake
         // - lecture de touches du clavier de la Console
         // - switch
 
-        ConsoleKey touche;
-        touche = Console.ReadKey(true).Key;
 
-
-        EffacerEtAfficherGrandTitre();
-        Console.WriteLine();
-
-        AfficherTexteCentre("Menu");
-
-        AfficherTexteCentre("1. Jouer une partie");
-        AfficherTexteCentre("2. Afficher l'aide");
-        AfficherTexteCentre("3. Afficher les scores");
-        AfficherTexteCentre("4. Changer la configuration");
-        AfficherTexteCentre("Q. Quitter le jeu");
-
-        switch (touche)
+        do
         {
-            case ConsoleKey.D1:
-                AfficherAide(false);
-                break;
+            EffacerEtAfficherGrandTitre();
+            Console.WriteLine();
+
+            AfficherTexteCentre("Menu");
+            Console.WriteLine();
+
+            AfficherTexteCentre("1. Jouer une partie".PadRight(27));
+            AfficherTexteCentre("2. Afficher l'aide".PadRight(27));
+            AfficherTexteCentre("3. Afficher les scores".PadRight(27));
+            AfficherTexteCentre("4. Changer la configuration".PadRight(27));
+            AfficherTexteCentre("Q. Quitter le jeu".PadRight(27));
+
+
+            ConsoleKey touche;
+            touche = Console.ReadKey(true).Key;
+
+            switch (touche)
+            {
+                case ConsoleKey.D1:
+                case ConsoleKey.NumPad1:
+                    return true;
+
+
+                case ConsoleKey.D2:
+                case ConsoleKey.NumPad2:
+                    AfficherAide(false);
+                    break;
+
+                case ConsoleKey.D3:
+                case ConsoleKey.NumPad3:
+                    AfficherScores();
+                    break;
+
+                case ConsoleKey.D4:
+                case ConsoleKey.NumPad4:
+                    ChangerConfiguration();
+                    break;
+
+                case ConsoleKey.Q:
+                    TerminerJeu();
+                    return false;
+
+            }
+
         }
+        while (true);
 
 
-        return false;
-        //throw new NotImplementedException();
+
+        
     }
 
     /// <summary>
