@@ -143,6 +143,7 @@ public partial class Snake
     const int LONGUEUR_MIN_PSEUDO = 3;
     const int LONGUEUR_MAX_PSEUDO = 20;
 
+
     // ********************************************* //
     // ************* CONFIGURATION ***************** //
     // ********************************************* //
@@ -156,16 +157,26 @@ public partial class Snake
 
     // Dimensions du terrain de jeu (largeur et hauteur)
     // A COMPLETER
-
+    public static int LARGEUR_TERRAIN = 40;
+    public static int HAUTEUR_TERRAIN = 20;
+    
     // Caractères des gâteaux à manger (au minimum un dessin de gâteau)
     // Exemple: ⬤
     // A COMPLETER
+    public static string GATEAU_DESSIN = "⬤ ";
 
     // Couleurs du jeu
     // A COMPLETER
+    public static ConsoleColor COULEUR_GATEAU = ConsoleColor.White;
+    public static ConsoleColor COULEUR_SERPENT = ConsoleColor.White;
+    public static ConsoleColor COULEUR_BORDURE = ConsoleColor.White;
+    public static ConsoleColor COULEUR_CONSOLE = ConsoleColor.Black;
+
 
     // Valeur dérivées de la configuration
     // Les dimensions "ECRAN" utilise les caractères de l'écran, et tiennent donc
     // compte du fait qu'une case de jeu fait 2 caractères de large à l'écran
     // A COMPLETER
+    public static int LARGEUR_ECRAN = LARGEUR_TERRAIN * 2;
+    public static int HAUTEUR_ECRAN = HAUTEUR_TERRAIN;
 }
