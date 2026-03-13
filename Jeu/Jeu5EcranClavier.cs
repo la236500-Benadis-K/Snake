@@ -124,10 +124,28 @@ public partial class Snake
         // - lecture de touches du clavier de la Console
         // - switch
 
+        ConsoleKey touche;
+        touche = Console.ReadKey(true).Key;
+
+
         EffacerEtAfficherGrandTitre();
         Console.WriteLine();
 
         AfficherTexteCentre("Menu");
+
+        AfficherTexteCentre("1. Jouer une partie");
+        AfficherTexteCentre("2. Afficher l'aide");
+        AfficherTexteCentre("3. Afficher les scores");
+        AfficherTexteCentre("4. Changer la configuration");
+        AfficherTexteCentre("Q. Quitter le jeu");
+
+        switch (touche)
+        {
+            case ConsoleKey.D1:
+                AfficherAide(false);
+                break;
+        }
+
 
         return false;
         //throw new NotImplementedException();
