@@ -47,12 +47,12 @@ public partial class Snake
         // MATIERE A UTILISER
         // - affichage à la Console
         Console.Clear();
-        AfficherTexteCentre("██████╗░██╗░░░██╗████████╗██╗░░██╗░█████╗░███╗░░██╗");
-        AfficherTexteCentre("██╔══██╗╚██╗░██╔╝╚══██╔══╝██║░░██║██╔══██╗████╗░██║");
-        AfficherTexteCentre("██████╔╝░╚████╔╝░░░░██║░░░███████║██║░░██║██╔██╗██║");
-        AfficherTexteCentre("██╔═══╝░░░╚██╔╝░░░░░██║░░░██╔══██║██║░░██║██║╚████║");
-        AfficherTexteCentre("██║░░░░░░░░██║░░░░░░██║░░░██║░░██║╚█████╔╝██║░╚███║");
-        AfficherTexteCentre("╚═╝░░░░░░░░╚═╝░░░░░░╚═╝░░░╚═╝░░╚═╝░╚════╝░╚═╝░░╚══╝");
+        AfficherTexteCentre("██████╗ ██╗  ██╗████████╗ ██╗  ██╗ █████╗ ███╗  ██╗");
+        AfficherTexteCentre("██╔══██╗╚██╗ ██╔╝╚══██╔══╝██║  ██║██╔══██╗████╗ ██║");
+        AfficherTexteCentre("██████╔╝ ╚████╔╝    ██║   ███████║██║  ██║██╔██╗██║");
+        AfficherTexteCentre("██╔═══╝   ╚██╔╝     ██║   ██╔══██║██║  ██║██║╚████║");
+        AfficherTexteCentre("██║        ██║      ██║   ██║  ██║╚█████╔╝██║ ╚███║");
+        AfficherTexteCentre("╚═╝        ╚═╝      ╚═╝   ╚═╝  ╚═╝ ╚════╝ ╚═╝  ╚══╝");
     }
 
 
