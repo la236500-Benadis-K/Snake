@@ -100,6 +100,12 @@ public partial class Snake
 
         // MATIERE A UTILISER
         // - affichage à la Console
+
+
+        EffacerEtAfficherGrandTitre();
+
+        Console.SetCursorPosition(0, Console.WindowHeight / 2);
+        AfficherTexteCentre("Au revoir !");
     }
 
 
