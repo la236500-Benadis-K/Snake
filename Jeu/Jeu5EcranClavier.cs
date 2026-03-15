@@ -182,7 +182,7 @@ public partial class Snake
 
 
 
-        
+
     }
 
     /// <summary>
@@ -256,6 +256,24 @@ et changer la configuration du jeu (taille et couleurs)");
         // - affichage à la Console
         // - utilisation d'une Liste de Structures
         // - switch
+        //━┃╋
+        int largeurCol1 = 6;//points
+        int largeurCol2 = 15;//pseudo
+
+        EffacerEtAfficherGrandTitre();
+        
+        string ligneEntete = "Points".PadRight(largeurCol1) + "┃ " + "Pseudo".PadRight(largeurCol2);//affiche Points┃Pseudo
+
+        string ligneCol1 = "".PadRight(largeurCol1, '━');
+        string ligneCol2 = "".PadRight(largeurCol2 + 1, '━');
+        string separateurHorizontal = ligneCol1 + "╋" + ligneCol2;
+
+        AfficherTexteCentre(ligneEntete);
+        AfficherTexteCentre(separateurHorizontal);
+
+        AttendreTouche();
+
+
     }
 
 
