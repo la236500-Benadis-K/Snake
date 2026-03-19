@@ -237,6 +237,10 @@ et changer la configuration du jeu (taille et couleurs)");
         // - affichage à la Console
         // - lecture de touches du clavier de la Console
         // - switch
+
+        EffacerEtAfficherGrandTitre();
+        AfficherTexteCentre("Configurations");
+        AttendreTouche();
     }
 
     /// <summary>
