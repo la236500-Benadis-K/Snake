@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.Tracing;
 
 namespace Jeu;
 
@@ -265,7 +266,7 @@ et changer la configuration du jeu (taille et couleurs)");
         int largeurCol2 = 15;//pseudo
 
         EffacerEtAfficherGrandTitre();
-        
+
         string ligneEntete = "Points".PadRight(largeurCol1) + "┃ " + "Pseudo".PadRight(largeurCol2);//affiche Points┃Pseudo
 
         string ligneCol1 = "".PadRight(largeurCol1, '━');
@@ -346,6 +347,41 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
+
+        //▼▲▶◀
+        string dessin = "█ ";
+
+        int colonne = caseADessiner.x * 2;
+        int ligne = caseADessiner.y + 1;
+
+        Console.SetCursorPosition(colonne, ligne);
+
+        if (caseDeTete)
+        {
+            switch (direction)
+            {
+                case Directions.Haut:
+                    dessin = "▲ ";
+                    break;
+
+                case Directions.Bas:
+                    dessin = "▼ ";
+                    break;
+                case Directions.Droite:
+                    dessin = "▶ ";
+                    break;
+                case Directions.Gauche:
+                    dessin = "◀ ";
+                    break;
+            }
+        }
+        
+
+        Console.Write(dessin);
+
+
+
+
     }
 
     /// <summary>
