@@ -33,6 +33,17 @@ public class TestCalcul
 
         Snake.Accelerer(ref partie);
         Assert.AreEqual(2, partie.Vitesse);
-        
+
+    }
+    
+    [TestMethod]
+    public void VitesseEgalVitesseMax()
+    {
+        Snake.Partie partie = new();
+
+        partie.Vitesse = 100;
+
+        Snake.Accelerer(ref partie);
+        Assert.AreEqual(100, partie.Vitesse); 
     }
 }
