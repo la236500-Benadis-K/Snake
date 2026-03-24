@@ -23,4 +23,16 @@ public class TestCalcul
     }
 
     // A COMPLETER
+
+    [TestMethod]
+    public void VitesseInferieurAVitesseMax()
+    {
+        Snake.Partie partie = new();
+
+        partie.Vitesse = 1;
+
+        Snake.Accelerer(ref partie);
+        Assert.AreEqual(2, partie.Vitesse);
+        
+    }
 }
