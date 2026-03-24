@@ -155,6 +155,12 @@ public partial class Snake
     /// </summary>
     public static void Accelerer(ref Partie partie)
     {
+
         // A COMPLETER
+        
+        if(partie.Vitesse<VITESSE_MAX)
+        {
+            partie.Vitesse++;
+        }
     }
 }
