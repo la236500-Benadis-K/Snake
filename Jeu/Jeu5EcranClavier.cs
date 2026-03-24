@@ -397,6 +397,16 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
+
+        string gateau_dessin = GATEAU_DESSIN;
+
+        int colonne = caseADessiner.x * 2;
+        int ligne = caseADessiner.y + 1;
+
+        Console.SetCursorPosition(colonne, ligne);
+        Console.Write(gateau_dessin);
+
+        
     }
 
     /// <summary>
