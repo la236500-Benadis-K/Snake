@@ -109,7 +109,30 @@ public partial class Snake
         // MATIERE A UTILISER
         // - parcours de liste
 
-        throw new NotImplementedException();
+        int limite;
+
+        if (testerLaQueue)
+        {
+            // pour tester toute la liste avec la queue pour voir si le serpend se mord quand il avance 
+            limite = casesOccupees.Count;
+        }
+        else
+
+        {
+            // pour tester toute la liste sans la queue pour voir si une case est vide pour le gateau 
+            limite = casesOccupees.Count - 1;
+        }
+
+
+        for (int i = 0; i < limite; i++)
+        {
+            //pour vérifier si la case occupée est égale à la case qui est testée 
+            if (casesOccupees[i].x == caseATester.x && casesOccupees[i].y == caseATester.y)
+            {
+                return true; // case occupée
+            }
+        }
+        return false; // case vide 
     }
 
     /// <summary>
@@ -157,8 +180,8 @@ public partial class Snake
     {
 
         // A COMPLETER
-        
-        if(partie.Vitesse<VITESSE_MAX)
+
+        if (partie.Vitesse < VITESSE_MAX)
         {
             partie.Vitesse++;
         }
