@@ -35,7 +35,7 @@ public class TestCalcul
         Assert.AreEqual(2, partie.Vitesse);
 
     }
-    
+
     [TestMethod]
     public void VitesseEgalVitesseMax()
     {
@@ -44,6 +44,68 @@ public class TestCalcul
         partie.Vitesse = 100;
 
         Snake.Accelerer(ref partie);
-        Assert.AreEqual(100, partie.Vitesse); 
+        Assert.AreEqual(100, partie.Vitesse);
+    }
+
+
+    [TestMethod]
+    public void CaseOccupee()
+    {
+        Snake.Partie partie = new();
+
+        List<Snake.CaseDeJeu> caseOccupee = new();
+        caseOccupee.Add(new Snake.CaseDeJeu(1, 1));
+        Snake.CaseDeJeu caseAtester = new Snake.CaseDeJeu(1, 1);
+
+        bool resultat = Snake.VerifierCasePasVide(caseOccupee, caseAtester, true);
+
+        Assert.IsTrue(resultat);
+
+
+
+
+    }
+
+    [TestMethod]
+    public void CaseVide()
+    {
+        Snake.Partie partie = new();
+
+        List<Snake.CaseDeJeu> caseOccupee = new();
+        caseOccupee.Add(new Snake.CaseDeJeu(1, 1));
+        Snake.CaseDeJeu caseAtester = new Snake.CaseDeJeu(11, 13);
+
+        bool resultat = Snake.VerifierCasePasVide(caseOccupee, caseAtester, true);
+
+        Assert.IsFalse(resultat);
+    }
+
+
+    [TestMethod]
+    public void testerQueueTrue()
+    {
+        Snake.Partie partie = new();
+
+        List<Snake.CaseDeJeu> caseOccupee = new();
+        caseOccupee.Add(new Snake.CaseDeJeu(1, 1));
+        Snake.CaseDeJeu caseAtester = new Snake.CaseDeJeu(1, 1);
+
+        bool resultat = Snake.VerifierCasePasVide(caseOccupee, caseAtester, true);
+
+        Assert.IsTrue(resultat);
+    }
+
+    [TestMethod]
+    public void testerQueueFalse()
+    {
+        Snake.Partie partie = new();
+
+        List<Snake.CaseDeJeu> caseOccupee = new();
+        caseOccupee.Add(new Snake.CaseDeJeu(1, 1));
+        Snake.CaseDeJeu caseAtester = new Snake.CaseDeJeu(1, 1);
+
+        bool resultat = Snake.VerifierCasePasVide(caseOccupee, caseAtester, false);
+
+        Assert.IsFalse(resultat);
     }
 }
