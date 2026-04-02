@@ -177,7 +177,7 @@ public class TestCalcul
     }
 
     [TestMethod]
-    public void EffacerQueueTrue()
+    public void EnleverQueueTrue()
     {
         Snake.Partie partie = new();
 
@@ -195,7 +195,7 @@ public class TestCalcul
     }
 
     [TestMethod]
-    public void EffacerQueueFalse()
+    public void EnleverQueueFalse()
     {
         Snake.Partie partie = new();
 
