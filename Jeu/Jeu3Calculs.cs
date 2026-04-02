@@ -206,6 +206,11 @@ public partial class Snake
 
         // MATIERE A UTILISER
         // - suppression d'un élément d'une liste
+
+        if (partie.EnleverQueue)
+        {
+            partie.Serpent.RemoveAt(partie.Serpent.Count - 1);
+        }
     }
 
     /// <summary>
