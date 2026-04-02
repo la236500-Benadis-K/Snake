@@ -211,4 +211,21 @@ public class TestCalcul
         Assert.AreEqual(3, partie.Serpent.Count);
 
     }
+
+    [TestMethod]
+    public void AjouterGateauCaseVide()
+    {
+        Snake.Partie partie = new();
+
+        partie.Serpent = new List<Snake.CaseDeJeu>();
+
+        partie.Serpent.Add(new Snake.CaseDeJeu(1, 1));
+        partie.Serpent.Add(new Snake.CaseDeJeu(2, 2));
+        partie.Serpent.Add(new Snake.CaseDeJeu(3, 3));
+
+        Snake.AjouterGateau(ref partie);
+        Assert.IsFalse(Snake.VerifierCasePasVide(partie.Serpent, partie.PositionGateau, true));
+
+
+    }
 }
