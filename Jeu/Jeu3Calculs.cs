@@ -50,6 +50,19 @@ public partial class Snake
         // MATIERE A UTILISER
         // - nombres aléatoires
         // - initialiser une Structure CaseDeJeu
+
+        do
+        {
+
+            partie.PositionGateau.x = Random.Shared.Next(0, LARGEUR_TERRAIN);
+
+            partie.PositionGateau.y = Random.Shared.Next(0, HAUTEUR_TERRAIN);
+
+        }
+
+        while (VerifierCasePasVide(partie.Serpent, partie.PositionGateau, false));
+
+
     }
 
     /// <summary>
