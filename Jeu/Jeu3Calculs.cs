@@ -88,8 +88,44 @@ public partial class Snake
     {
         // A COMPLETER
 
-        throw new NotImplementedException();
+        switch (ancienneDirection)
+        {
+            //vérifie qu'ont ne fais pas demi tour, si c'est le cas on renvoie l'ancienne direction
+            // par EX: si on va vers le haut et veut aller vers le bas ça retourne l'ancienne direction qui est le haut car on ne peut pas faire demi-tour
+            case Directions.Haut:
+
+                if (nouvelleDirection == Directions.Bas)
+                {
+                    return ancienneDirection;
+                }
+                break;
+            case Directions.Bas:
+                if (nouvelleDirection == Directions.Haut)
+                {
+                    return ancienneDirection;
+                }
+                break;
+            case Directions.Droite:
+                if (nouvelleDirection == Directions.Gauche)
+                {
+                    return ancienneDirection;
+                }
+                break;
+
+            case Directions.Gauche:
+                if (nouvelleDirection == Directions.Droite)
+                {
+                    return ancienneDirection;
+                }
+                break;
+
+        }
+
+        //return la nouvelle direction si elle est valide 
+        return nouvelleDirection;
     }
+
+
 
     /// <summary>
     /// Vérification qu'une cellule n'est pas vide
