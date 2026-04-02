@@ -122,7 +122,7 @@ public class TestCalcul
         Assert.AreEqual(ancienneDirection, resultat);
     }
 
-    
+
     [TestMethod]
     public void TestDemiTourGaucheDroite()
     {
@@ -161,7 +161,7 @@ public class TestCalcul
 
         Assert.AreEqual(ancienneDirection, resultat);
     }
-    
+
 
     [TestMethod]
     public void TestDirectionValide()
@@ -174,5 +174,41 @@ public class TestCalcul
         Snake.Directions resultat = Snake.CalculerNouvelleDirection(ancienneDirection, nouvelleDirection);
 
         Assert.AreEqual(nouvelleDirection, resultat);
+    }
+
+    [TestMethod]
+    public void EffacerQueueTrue()
+    {
+        Snake.Partie partie = new();
+
+        partie.Serpent = new List<Snake.CaseDeJeu>();
+
+        partie.Serpent.Add(new Snake.CaseDeJeu(1, 1));
+        partie.Serpent.Add(new Snake.CaseDeJeu(2, 2));
+        partie.Serpent.Add(new Snake.CaseDeJeu(3, 3));
+
+        partie.EnleverQueue = true;
+
+        Snake.EnleverQueue(ref partie);
+        Assert.AreEqual(2, partie.Serpent.Count);
+
+    }
+
+    [TestMethod]
+    public void EffacerQueueFalse()
+    {
+        Snake.Partie partie = new();
+
+        partie.Serpent = new List<Snake.CaseDeJeu>();
+
+        partie.Serpent.Add(new Snake.CaseDeJeu(1, 1));
+        partie.Serpent.Add(new Snake.CaseDeJeu(2, 2));
+        partie.Serpent.Add(new Snake.CaseDeJeu(3, 3));
+
+        partie.EnleverQueue = false;
+
+        Snake.EnleverQueue(ref partie);
+        Assert.AreEqual(3, partie.Serpent.Count);
+
     }
 }
