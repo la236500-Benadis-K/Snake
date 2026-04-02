@@ -108,4 +108,71 @@ public class TestCalcul
 
         Assert.IsFalse(resultat);
     }
+
+    [TestMethod]
+    public void TestDemiTourHautBas()
+    {
+        Snake.Partie partie = new();
+
+        Snake.Directions ancienneDirection = Snake.Directions.Haut;
+        Snake.Directions nouvelleDirection = Snake.Directions.Bas;
+
+        Snake.Directions resultat = Snake.CalculerNouvelleDirection(ancienneDirection, nouvelleDirection);
+
+        Assert.AreEqual(ancienneDirection, resultat);
+    }
+
+    
+    [TestMethod]
+    public void TestDemiTourGaucheDroite()
+    {
+        Snake.Partie partie = new();
+
+        Snake.Directions ancienneDirection = Snake.Directions.Gauche;
+        Snake.Directions nouvelleDirection = Snake.Directions.Droite;
+
+        Snake.Directions resultat = Snake.CalculerNouvelleDirection(ancienneDirection, nouvelleDirection);
+
+        Assert.AreEqual(ancienneDirection, resultat);
+    }
+
+    [TestMethod]
+    public void TestDemiTourBasHaut()
+    {
+        Snake.Partie partie = new();
+
+        Snake.Directions ancienneDirection = Snake.Directions.Bas;
+        Snake.Directions nouvelleDirection = Snake.Directions.Haut;
+
+        Snake.Directions resultat = Snake.CalculerNouvelleDirection(ancienneDirection, nouvelleDirection);
+
+        Assert.AreEqual(ancienneDirection, resultat);
+    }
+
+    [TestMethod]
+    public void TestDemiTourDroiteGauche()
+    {
+        Snake.Partie partie = new();
+
+        Snake.Directions ancienneDirection = Snake.Directions.Droite;
+        Snake.Directions nouvelleDirection = Snake.Directions.Gauche;
+
+        Snake.Directions resultat = Snake.CalculerNouvelleDirection(ancienneDirection, nouvelleDirection);
+
+        Assert.AreEqual(ancienneDirection, resultat);
+    }
+    
+
+    [TestMethod]
+    public void TestDirectionValide()
+    {
+        Snake.Partie partie = new();
+
+        Snake.Directions ancienneDirection = Snake.Directions.Haut;
+        Snake.Directions nouvelleDirection = Snake.Directions.Droite;
+
+        Snake.Directions resultat = Snake.CalculerNouvelleDirection(ancienneDirection, nouvelleDirection);
+
+        Assert.AreEqual(nouvelleDirection, resultat);
+    }
 }
