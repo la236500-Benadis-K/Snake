@@ -87,6 +87,49 @@ public partial class Snake
         // - switch
         // - remplir une structure Partie
         // - ref
+
+        partie.Serpent = new List<CaseDeJeu>();
+
+        //pour tirer une direction au hasard das l'enum de directions
+        partie.DirectionSerpent = (Directions)Random.Shared.Next(0, 4);
+
+
+        //tirer une position de départ du serpent au hasard
+        int xDepartHasard = Random.Shared.Next(0, LARGEUR_TERRAIN);
+        int yDeparthasard = Random.Shared.Next(0, HAUTEUR_TERRAIN);
+
+
+        switch (partie.DirectionSerpent)
+        {
+            case Directions.Haut:
+                yDeparthasard = HAUTEUR_TERRAIN - 1;
+                break;
+            case Directions.Bas:
+                yDeparthasard = 0;
+                break;
+            case Directions.Gauche:
+                xDepartHasard = LARGEUR_TERRAIN - 1;
+                break;
+            case Directions.Droite:
+                xDepartHasard = 0;
+                break;
+
+        }
+
+
+        //ajouter la tete du serpent selon la direction
+        partie.Serpent.Add(new CaseDeJeu(xDepartHasard, yDeparthasard));
+
+
+
+        partie.Vitesse = VITESSE_MIN;
+        partie.Score = 0;
+        partie.PartieEnCours = true;
+        partie.EnleverQueue = false;
+
+        
+        AjouterGateau(ref partie);
+
     }
 
     /// <summary>
