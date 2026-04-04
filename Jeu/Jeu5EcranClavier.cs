@@ -348,9 +348,9 @@ et changer la configuration du jeu (taille et couleurs)");
         // - affichage à la Console
         // - positionnement du curseur de la console
 
-        //▼▲▶◀
-        string dessin = "█ ";
 
+
+        string dessin = DESSIN_CORPS;
         int colonne = caseADessiner.x * 2;
         int ligne = caseADessiner.y + 1;
 
@@ -361,17 +361,17 @@ et changer la configuration du jeu (taille et couleurs)");
             switch (direction)
             {
                 case Directions.Haut:
-                    dessin = "▲ ";
+                    dessin = DESSIN_TETE_HAUT;
                     break;
 
                 case Directions.Bas:
-                    dessin = "▼ ";
+                    dessin = DESSIN_TETE_BAS;
                     break;
                 case Directions.Droite:
-                    dessin = "▶ ";
+                    dessin = DESSIN_TETE_DROITE;
                     break;
                 case Directions.Gauche:
-                    dessin = "◀ ";
+                    dessin = DESSIN_TETE_GAUCHE;
                     break;
             }
         }
