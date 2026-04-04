@@ -88,46 +88,61 @@ public partial class Snake
         // - remplir une structure Partie
         // - ref
 
-        partie.Serpent = new List<CaseDeJeu>();
-
-        //pour tirer une direction au hasard das l'enum de directions
-        partie.DirectionSerpent = (Directions)Random.Shared.Next(0, 4);
-
-
-        //tirer une position de départ du serpent au hasard
-        int xDepartHasard = Random.Shared.Next(0, LARGEUR_TERRAIN);
-        int yDeparthasard = Random.Shared.Next(0, HAUTEUR_TERRAIN);
-
-
-        switch (partie.DirectionSerpent)
-        {
-            case Directions.Haut:
-                yDeparthasard = HAUTEUR_TERRAIN - 1;
-                break;
-            case Directions.Bas:
-                yDeparthasard = 0;
-                break;
-            case Directions.Gauche:
-                xDepartHasard = LARGEUR_TERRAIN - 1;
-                break;
-            case Directions.Droite:
-                xDepartHasard = 0;
-                break;
-
-        }
-
-
-        //ajouter la tete du serpent selon la direction
-        partie.Serpent.Add(new CaseDeJeu(xDepartHasard, yDeparthasard));
-
-
-
         partie.Vitesse = VITESSE_MIN;
         partie.Score = 0;
         partie.PartieEnCours = true;
         partie.EnleverQueue = false;
 
-        
+
+
+        //on tire une directions au hasard dans l'enum de direction 
+        partie.DirectionSerpent = (Directions)Random.Shared.Next(0, 4);
+
+        switch (partie.DirectionSerpent)
+        {
+            case Directions.Haut:
+                //on tire une position au hasard sur la largeur du terrain
+                int x = Random.Shared.Next(0, LARGEUR_TERRAIN);
+
+                //on initialise une nouvelle liste pour définir la case des anneaux et de la tête
+                partie.Serpent = new List<CaseDeJeu>();
+
+                partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 3));//la tête
+                partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 2));
+                partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 1));//si le serpent va en haut on commence par le bas et on colle le corps au bord
+                break;
+            case Directions.Bas:
+                x = Random.Shared.Next(0, LARGEUR_TERRAIN);
+                partie.Serpent = new List<CaseDeJeu>();
+                partie.Serpent.Add(new CaseDeJeu(x, 2));
+                partie.Serpent.Add(new CaseDeJeu(x, 1));
+                partie.Serpent.Add(new CaseDeJeu(x, 0));
+                break;
+            case Directions.Droite:
+                //on tire une position au hasard sur la hauteur du terrain
+                int y = Random.Shared.Next(0, HAUTEUR_TERRAIN);
+
+            
+                partie.Serpent = new List<CaseDeJeu>();
+                partie.Serpent.Add(new CaseDeJeu(2, y));
+                partie.Serpent.Add(new CaseDeJeu(1, y));
+                partie.Serpent.Add(new CaseDeJeu(0, y));
+                break;
+            case Directions.Gauche:
+                y = Random.Shared.Next(0, HAUTEUR_TERRAIN);
+                partie.Serpent = new List<CaseDeJeu>();
+                partie.Serpent.Add(new CaseDeJeu(LARGEUR_TERRAIN - 3, y));
+                partie.Serpent.Add(new CaseDeJeu(LARGEUR_TERRAIN - 2, y));
+                partie.Serpent.Add(new CaseDeJeu(LARGEUR_TERRAIN - 1, y));
+                break;
+        }
+
+
+
+
+
+
+
         AjouterGateau(ref partie);
 
     }
