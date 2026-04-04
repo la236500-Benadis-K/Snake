@@ -20,9 +20,101 @@ public class TestCalcul
         Snake.InitialiserPartie(ref partie);
         // Vérification des paramètres
         // A COMPLETER
+        Assert.AreEqual(Snake.VITESSE_MIN, partie.Vitesse);
+        Assert.AreEqual(0, partie.Score);
+        Assert.IsTrue(partie.PartieEnCours);
+        Assert.IsFalse(partie.EnleverQueue);
+        Assert.AreEqual(3, partie.Serpent.Count);
+
     }
 
-    // A COMPLETER
+    [TestMethod]
+    public void InitialiserPartieDirectionHaut()
+    {
+        Snake.Partie partie = new();
+
+
+        do
+        {
+            Snake.InitialiserPartie(ref partie);
+        } while (partie.DirectionSerpent != Snake.Directions.Haut);
+
+        // On vérifie le placement
+        Snake.CaseDeJeu tete = partie.Serpent[0];
+        Snake.CaseDeJeu corps = partie.Serpent[1];
+        Snake.CaseDeJeu queue = partie.Serpent[2];
+
+        Assert.AreEqual(tete.y, Snake.HAUTEUR_TERRAIN - 3);
+        Assert.AreEqual(corps.y, Snake.HAUTEUR_TERRAIN - 2);
+        Assert.AreEqual(queue.y, Snake.HAUTEUR_TERRAIN - 1);
+        Assert.AreEqual(tete.x, queue.x);
+    }
+
+    [TestMethod]
+    public void InitialiserPartieDirectionBas()
+    {
+        Snake.Partie partie = new();
+
+
+        do
+        {
+            Snake.InitialiserPartie(ref partie);
+        } while (partie.DirectionSerpent != Snake.Directions.Bas);
+
+        // On vérifie le placement
+        Snake.CaseDeJeu tete = partie.Serpent[0];
+        Snake.CaseDeJeu corps = partie.Serpent[1];
+        Snake.CaseDeJeu queue = partie.Serpent[2];
+
+        Assert.AreEqual(2,tete.y);
+        Assert.AreEqual(1,corps.y);
+        Assert.AreEqual(0,queue.y);
+        Assert.AreEqual(tete.x, queue.x);
+    }
+
+    [TestMethod]
+    public void InitialiserPartieDirectionGauche()
+    {
+        Snake.Partie partie = new();
+
+
+        do
+        {
+            Snake.InitialiserPartie(ref partie);
+        } while (partie.DirectionSerpent != Snake.Directions.Gauche);
+
+        // On vérifie le placement
+        Snake.CaseDeJeu tete = partie.Serpent[0];
+        Snake.CaseDeJeu corps = partie.Serpent[1];
+        Snake.CaseDeJeu queue = partie.Serpent[2];
+
+        Assert.AreEqual(Snake.LARGEUR_TERRAIN - 3, tete.x);
+        Assert.AreEqual(Snake.LARGEUR_TERRAIN - 2, corps.x);
+        Assert.AreEqual(Snake.LARGEUR_TERRAIN - 1, queue.x);
+        Assert.AreEqual(tete.y, queue.y);
+    }
+
+    [TestMethod]
+    public void InitialiserPartieDirectionDroite()
+    {
+        Snake.Partie partie = new();
+
+
+        do
+        {
+            Snake.InitialiserPartie(ref partie);
+        } while (partie.DirectionSerpent != Snake.Directions.Droite);
+
+        // On vérifie le placement
+        Snake.CaseDeJeu tete = partie.Serpent[0];
+        Snake.CaseDeJeu corps = partie.Serpent[1];
+        Snake.CaseDeJeu queue = partie.Serpent[2];
+
+        Assert.AreEqual(2, tete.x);
+        Assert.AreEqual(1, corps.x);
+        Assert.AreEqual(0, queue.x);
+        Assert.AreEqual(tete.y, queue.y);
+    }
 
     [TestMethod]
     public void VitesseInferieurAVitesseMax()
@@ -230,5 +322,5 @@ public class TestCalcul
     }
 
 
-    
+
 }
