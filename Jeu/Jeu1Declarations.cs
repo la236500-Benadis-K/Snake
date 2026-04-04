@@ -132,6 +132,11 @@ public partial class Snake
     // et ça doit se raccorder dans tous les sens, ce qui limite les choix...
     // Choix pour les dessins █ ▓ ▒ ░ ▐ ▌ ⚌ ╱ ╲ ⧹ ⧸ ≻ ≺ ╯ ╮ ▕ ─ ▶ ◀ ◢ ◣ ◥ ◤ ⸦ ⸧
     // A COMPLETER
+    public const string DESSIN_CORPS = "██";
+    public const string DESSIN_TETE_HAUT = "ɥ ";
+    public const string DESSIN_TETE_BAS = "h ";
+    public const string DESSIN_TETE_GAUCHE = "≺ ";
+    public const string DESSIN_TETE_DROITE = "≻ ";
 
     // Constantes pour la vitesse minimum et maximum (de 1 à 100)
     // A COMPLETER
