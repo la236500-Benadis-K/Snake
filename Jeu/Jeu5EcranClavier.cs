@@ -334,37 +334,48 @@ et changer la configuration du jeu (taille et couleurs)");
         
         Console.Clear();
 
-        // ligne du haut
+        
+
+        // Ligne haut
         Console.SetCursorPosition(0, 0);
-        Console.Write(COINT_HAUT_GAUCHE);
-        Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_HAUT));
+        Console.Write(COIN_HAUT_GAUCHE);
+        Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_HAUT)); 
         Console.Write(COIN_HAUT_DROIT);
 
-        //côtés gauche et droit
-        for (int i = 1; i <= HAUTEUR_TERRAIN; i++)
+        // Côtés gauche et droit
+        for (int i = 0; i < HAUTEUR_TERRAIN; i++)
         {
-            Console.SetCursorPosition(0, i);
-            Console.Write(BORD_GAUCHE);
-            Console.SetCursorPosition(LARGEUR_ECRAN + 1, i);
-            Console.Write(BORD_DROIT);
+            Console.SetCursorPosition(0, i + 1);
+            Console.Write(BORD_GAUCHE + "".PadLeft(LARGEUR_ECRAN) + BORD_DROIT);
         }
 
-        // ligne du bas
+        // Ligne bas
         Console.SetCursorPosition(0, HAUTEUR_TERRAIN + 1);
         Console.Write(COIN_BAS_GAUCHE);
         Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_BAS));
         Console.Write(COIN_BAS_DROIT);
 
-        //serpent
+        // serpent
         for (int i = 0; i < partie.Serpent.Count; i++)
         {
-            bool tete = (i == 0);
+            bool tete;
+
+            if (i == 0)
+            {
+                tete = true;
+            }
+            else
+            {
+                tete = false;
+            }
+            
             DessinerAnneau(partie.Serpent[i], tete, partie.DirectionSerpent);
         }
 
-        
+       
         DessinerGateau(partie.PositionGateau);
 
+        
     }
 
 
