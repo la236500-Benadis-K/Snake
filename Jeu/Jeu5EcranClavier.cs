@@ -331,6 +331,40 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
+        
+        Console.Clear();
+
+        // ligne du haut
+        Console.SetCursorPosition(0, 0);
+        Console.Write(COINT_HAUT_GAUCHE);
+        Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_HAUT));
+        Console.Write(COIN_HAUT_DROIT);
+
+        //côtés gauche et droit
+        for (int i = 1; i <= HAUTEUR_TERRAIN; i++)
+        {
+            Console.SetCursorPosition(0, i);
+            Console.Write(BORD_GAUCHE);
+            Console.SetCursorPosition(LARGEUR_ECRAN + 1, i);
+            Console.Write(BORD_DROIT);
+        }
+
+        // ligne du bas
+        Console.SetCursorPosition(0, HAUTEUR_TERRAIN + 1);
+        Console.Write(COIN_BAS_GAUCHE);
+        Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_BAS));
+        Console.Write(COIN_BAS_DROIT);
+
+        //serpent
+        for (int i = 0; i < partie.Serpent.Count; i++)
+        {
+            bool tete = (i == 0);
+            DessinerAnneau(partie.Serpent[i], tete, partie.DirectionSerpent);
+        }
+
+        
+        DessinerGateau(partie.PositionGateau);
+
     }
 
 
