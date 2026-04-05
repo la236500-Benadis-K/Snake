@@ -444,7 +444,6 @@ et changer la configuration du jeu (taille et couleurs)");
         // - positionnement du curseur de la console
 
         string gateau_dessin = GATEAU_DESSIN;
-
         int colonne = caseADessiner.x * 2 + 1;
         int ligne = caseADessiner.y + 1;
 
@@ -467,6 +466,11 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
+        
+        int colonne = caseAEffacer.x * 2 + 1;//*2 car un anneau fais 2 caractères
+        int ligne = caseAEffacer.y + 1;//+1 pour pas spawn dans le mur
+        Console.SetCursorPosition(colonne, ligne);
+        Console.Write("  ");
     }
 
     /// <summary>
