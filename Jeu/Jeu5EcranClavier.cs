@@ -396,7 +396,7 @@ et changer la configuration du jeu (taille et couleurs)");
 
 
         string dessin = DESSIN_CORPS;
-        int colonne = caseADessiner.x * 2;
+        int colonne = caseADessiner.x * 2 + 1;
         int ligne = caseADessiner.y + 1;
 
         Console.SetCursorPosition(colonne, ligne);
@@ -445,7 +445,7 @@ et changer la configuration du jeu (taille et couleurs)");
 
         string gateau_dessin = GATEAU_DESSIN;
 
-        int colonne = caseADessiner.x * 2;
+        int colonne = caseADessiner.x * 2 + 1;
         int ligne = caseADessiner.y + 1;
 
         Console.SetCursorPosition(colonne, ligne);
