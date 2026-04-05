@@ -494,6 +494,22 @@ et changer la configuration du jeu (taille et couleurs)");
 
         // BONUS POSSIBLE
         // - ambiance sonore
+        
+        //on dessine la nouvelle tete index 0
+       DessinerAnneau(partie.Serpent[0],true,partie.DirectionSerpent);
+       
+       //on dessine un anneau pour remplacer la tête
+       DessinerAnneau(partie.Serpent[1],false,partie.DirectionSerpent);
+
+       //si il ne mange pas 
+       if (partie.EnleverQueue)
+       {
+           EffacerQueue(partie.EffacerQueue);//on avance en effacant la queue de la dernière position
+       }
+       else
+       {
+           DessinerGateau(partie.PositionGateau);// il a mangé donc on re dessine un gateau
+       }
     }
 
     /// <summary>
