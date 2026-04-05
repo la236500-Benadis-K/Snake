@@ -117,12 +117,12 @@ public partial class Snake
     // Caractères pour la bordure autour du jeu (pour les calculs et l'affichage) 
     // Exemples de possibilités : ▐ ▌ ▄ ▀ ▗ ▖ ▝ ▘
     // A COMPLETER
-    public const char COIN_HAUT_DROIT = '▘';
-    public const char COINT_HAUT_GAUCHE = '▝';
+    public const char COIN_HAUT_DROIT = '▝';
+    public const char COIN_HAUT_GAUCHE = '▘';
     public const char BORD_DROIT = '▐';
     public const char BORD_GAUCHE = '▌';
-    public const char COIN_BAS_DROIT = '▖';
-    public const char COIN_BAS_GAUCHE = '▗';
+    public const char COIN_BAS_DROIT = '▗';
+    public const char COIN_BAS_GAUCHE = '▖';
     public const char BORD_HAUT = '▀';
     public const char BORD_BAS = '▄';
 
