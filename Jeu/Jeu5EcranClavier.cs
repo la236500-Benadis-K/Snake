@@ -555,5 +555,28 @@ et changer la configuration du jeu (taille et couleurs)");
 
         // MATIERE A UTILISER
         // - Lecture des touches au clavier
+
+        if (Console.KeyAvailable)
+        {
+            ConsoleKeyInfo touche = Console.ReadKey(true);
+            Directions nouvelleDirection = partie.DirectionSerpent;
+
+            switch (touche.Key)
+            {
+                case ConsoleKey.UpArrow:
+                    nouvelleDirection = Directions.Haut;
+                    break;
+                case ConsoleKey.DownArrow:
+                    nouvelleDirection = Directions.Bas;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    nouvelleDirection = Directions.Gauche;
+                    break;
+                case ConsoleKey.RightArrow:
+                    nouvelleDirection = Directions.Droite;
+                    break;
+            }
+            partie.DirectionSerpent = CalculerNouvelleDirection(partie.DirectionSerpent,nouvelleDirection);
+        }
     }
 }
