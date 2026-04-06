@@ -56,3 +56,6 @@ Jeu/obj/
 TestJeu/bin/
 TestJeu/obj/
 TestJeu/TestResults/
+.idea/
+*.user
+.DS_Store

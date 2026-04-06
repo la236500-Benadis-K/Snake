@@ -331,6 +331,51 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
+        
+        Console.Clear();
+
+        
+
+        // Ligne haut
+        Console.SetCursorPosition(0, 0);
+        Console.Write(COIN_HAUT_GAUCHE);
+        Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_HAUT)); 
+        Console.Write(COIN_HAUT_DROIT);
+
+        // Côtés gauche et droit
+        for (int i = 0; i < HAUTEUR_TERRAIN; i++)
+        {
+            Console.SetCursorPosition(0, i + 1);
+            Console.Write(BORD_GAUCHE + "".PadLeft(LARGEUR_ECRAN) + BORD_DROIT);
+        }
+
+        // Ligne bas
+        Console.SetCursorPosition(0, HAUTEUR_TERRAIN + 1);
+        Console.Write(COIN_BAS_GAUCHE);
+        Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_BAS));
+        Console.Write(COIN_BAS_DROIT);
+
+        // serpent
+        for (int i = 0; i < partie.Serpent.Count; i++)
+        {
+            bool tete;
+
+            if (i == 0)
+            {
+                tete = true;
+            }
+            else
+            {
+                tete = false;
+            }
+            
+            DessinerAnneau(partie.Serpent[i], tete, partie.DirectionSerpent);
+        }
+
+       
+        DessinerGateau(partie.PositionGateau);
+
+        
     }
 
 
@@ -351,7 +396,7 @@ et changer la configuration du jeu (taille et couleurs)");
 
 
         string dessin = DESSIN_CORPS;
-        int colonne = caseADessiner.x * 2;
+        int colonne = caseADessiner.x * 2 + 1;
         int ligne = caseADessiner.y + 1;
 
         Console.SetCursorPosition(colonne, ligne);
@@ -399,8 +444,7 @@ et changer la configuration du jeu (taille et couleurs)");
         // - positionnement du curseur de la console
 
         string gateau_dessin = GATEAU_DESSIN;
-
-        int colonne = caseADessiner.x * 2;
+        int colonne = caseADessiner.x * 2 + 1;
         int ligne = caseADessiner.y + 1;
 
         Console.SetCursorPosition(colonne, ligne);
@@ -422,6 +466,11 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
+        
+        int colonne = caseAEffacer.x * 2 + 1;//*2 car un anneau fais 2 caractères
+        int ligne = caseAEffacer.y + 1;//+1 pour pas spawn dans le mur
+        Console.SetCursorPosition(colonne, ligne);
+        Console.Write("  ");
     }
 
     /// <summary>
@@ -445,6 +494,22 @@ et changer la configuration du jeu (taille et couleurs)");
 
         // BONUS POSSIBLE
         // - ambiance sonore
+        
+        //on dessine la nouvelle tete index 0
+       DessinerAnneau(partie.Serpent[0],true,partie.DirectionSerpent);
+       
+       //on dessine un anneau pour remplacer la tête
+       DessinerAnneau(partie.Serpent[1],false,partie.DirectionSerpent);
+
+       //si il ne mange pas 
+       if (partie.EnleverQueue)
+       {
+           EffacerQueue(partie.EffacerQueue);//on avance en effacant la queue de la dernière position
+       }
+       else
+       {
+           DessinerGateau(partie.PositionGateau);// il a mangé donc on re dessine un gateau
+       }
     }
 
     /// <summary>
@@ -472,6 +537,7 @@ et changer la configuration du jeu (taille et couleurs)");
 
         // MATIERE A UTILISER
         // - Thread.Sleep
+        Thread.Sleep(150);
     }
 
 
@@ -489,5 +555,28 @@ et changer la configuration du jeu (taille et couleurs)");
 
         // MATIERE A UTILISER
         // - Lecture des touches au clavier
+
+        if (Console.KeyAvailable)
+        {
+            ConsoleKeyInfo touche = Console.ReadKey(true);
+            Directions nouvelleDirection = partie.DirectionSerpent;
+
+            switch (touche.Key)
+            {
+                case ConsoleKey.UpArrow:
+                    nouvelleDirection = Directions.Haut;
+                    break;
+                case ConsoleKey.DownArrow:
+                    nouvelleDirection = Directions.Bas;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    nouvelleDirection = Directions.Gauche;
+                    break;
+                case ConsoleKey.RightArrow:
+                    nouvelleDirection = Directions.Droite;
+                    break;
+            }
+            partie.DirectionSerpent = CalculerNouvelleDirection(partie.DirectionSerpent,nouvelleDirection);
+        }
     }
 }
