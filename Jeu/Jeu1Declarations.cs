@@ -162,7 +162,7 @@ public partial class Snake
 
     // Dimensions du terrain de jeu (largeur et hauteur)
     // A COMPLETER
-    public static int LARGEUR_TERRAIN = 40;
+    public static int LARGEUR_TERRAIN = 30;
     public static int HAUTEUR_TERRAIN = 20;
 
     // Caractères des gâteaux à manger (au minimum un dessin de gâteau)
