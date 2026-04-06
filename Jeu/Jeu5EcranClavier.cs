@@ -153,7 +153,7 @@ public partial class Snake
             switch (touche)
             {
                 case ConsoleKey.D1:
-                
+
                     return true;
 
 
