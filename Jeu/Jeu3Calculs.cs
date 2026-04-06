@@ -56,7 +56,7 @@ public partial class Snake
             partie.PositionGateau.x = Random.Shared.Next(0, LARGEUR_TERRAIN);
 
             partie.PositionGateau.y = Random.Shared.Next(0, HAUTEUR_TERRAIN);
-        } while (VerifierCasePasVide(partie.Serpent, partie.PositionGateau, false));
+        } while (VerifierCasePasVide(partie.Serpent, partie.PositionGateau, true));
     }
 
     /// <summary>
@@ -102,8 +102,8 @@ public partial class Snake
 
                 partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 3)); //la tête
                 partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 2));
-                partie.Serpent.Add(new CaseDeJeu(x,
-                    HAUTEUR_TERRAIN - 1)); //si le serpent va en haut on commence par le bas et on colle le corps au bord
+                partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 1)); //si le serpent va en haut on commence 
+                                                                           // par le bas et on colle le corps au bord
                 break;
             case Directions.Bas:
                 x = Random.Shared.Next(0, LARGEUR_TERRAIN);
@@ -282,8 +282,8 @@ public partial class Snake
             return;
         }
         
-        // on vérifie si le serpent percute sa queue, si oui on termine la partie 
-        else if (VerifierCasePasVide(partie.Serpent, nouvelleTete, true))
+        // on vérifie si le serpent percute son corps, si oui on termine la partie 
+        else if (VerifierCasePasVide(partie.Serpent, nouvelleTete, false))
         {
             partie.PartieEnCours = false;
             return;
