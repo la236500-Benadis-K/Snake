@@ -537,7 +537,14 @@ et changer la configuration du jeu (taille et couleurs)");
 
         // MATIERE A UTILISER
         // - Thread.Sleep
-        Thread.Sleep(150);
+        int delai = 150 - partie.Vitesse;
+
+        if (delai < 10)
+        {
+            delai = 10;
+        }
+        Thread.Sleep(delai);
+        
     }
 
 
