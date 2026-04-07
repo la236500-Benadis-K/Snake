@@ -523,6 +523,7 @@ et changer la configuration du jeu (taille et couleurs)");
 
         // MATIERE A UTILISER
         // - ref
+        partie.TempsAffichage = Environment.TickCount;
     }
 
     /// <summary>
@@ -542,6 +543,14 @@ et changer la configuration du jeu (taille et couleurs)");
         if (delai < 10)
         {
             delai = 10;
+        }
+
+        int tempsEcoule = Environment.TickCount - partie.TempsAffichage;
+        delai = delai - tempsEcoule;
+
+        if (delai < 0)
+        {
+            delai = 0;
         }
         Thread.Sleep(delai);
         
