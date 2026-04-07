@@ -298,6 +298,33 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
+        
+        int ligneLogo = 4; 
+        
+
+
+        Console.SetCursorPosition(0, ligneLogo);
+        AfficherTexteCentre(" ██████   █████  ███    ███ ███████      ██████  ██    ██ ███████ ██████  ");
+        AfficherTexteCentre("██       ██   ██ ████  ████ ██          ██    ██ ██    ██ ██      ██   ██ ");
+        AfficherTexteCentre("██   ███ ███████ ██ ████ ██ █████       ██    ██ ██    ██ █████   ██████  ");
+        AfficherTexteCentre("██    ██ ██   ██ ██  ██  ██ ██          ██    ██  ██  ██  ██      ██   ██ ");
+        AfficherTexteCentre(" ██████  ██   ██ ██      ██ ███████      ██████    ████   ███████ ██   ██ ");
+            
+
+        string pseudo; 
+        ScorePartie scorePartie = new ScorePartie();
+        scorePartie.points = partie.Score;
+
+            do
+            {
+                AfficherTexteCentre("Pseudo (3 à 20 lettres) ou ENTER :");
+                pseudo = Console.ReadLine();
+            } while (pseudo.Length < LONGUEUR_MIN_PSEUDO || pseudo.Length > LONGUEUR_MAX_PSEUDO);
+            
+            scorePartie.pseudo = pseudo;
+            
+            AttendreTouche();
+        
     }
 
     /// <summary>
