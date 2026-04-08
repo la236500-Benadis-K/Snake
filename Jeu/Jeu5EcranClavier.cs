@@ -361,10 +361,20 @@ et changer la configuration du jeu (taille et couleurs)");
         
         Console.Clear();
 
-        
+        MARGE_GAUCHE = (Console.WindowWidth - (LARGEUR_ECRAN + 2)) / 2;
+        MARGE_HAUT = (Console.WindowHeight - (HAUTEUR_TERRAIN + 2)) / 2;
+        if (MARGE_GAUCHE < 0)
+        {
+            MARGE_GAUCHE = 0;
+        }
+
+        if(MARGE_HAUT < 0)
+        {
+            MARGE_HAUT = 0;
+        }
 
         // Ligne haut
-        Console.SetCursorPosition(0, 0);
+        Console.SetCursorPosition(MARGE_GAUCHE, MARGE_HAUT);
         Console.Write(COIN_HAUT_GAUCHE);
         Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_HAUT)); 
         Console.Write(COIN_HAUT_DROIT);
@@ -372,12 +382,12 @@ et changer la configuration du jeu (taille et couleurs)");
         // Côtés gauche et droit
         for (int i = 0; i < HAUTEUR_TERRAIN; i++)
         {
-            Console.SetCursorPosition(0, i + 1);
+            Console.SetCursorPosition(MARGE_GAUCHE, i + 1 + MARGE_HAUT);
             Console.Write(BORD_GAUCHE + "".PadLeft(LARGEUR_ECRAN) + BORD_DROIT);
         }
 
         // Ligne bas
-        Console.SetCursorPosition(0, HAUTEUR_TERRAIN + 1);
+        Console.SetCursorPosition(MARGE_GAUCHE, HAUTEUR_TERRAIN + 1 + MARGE_HAUT);
         Console.Write(COIN_BAS_GAUCHE);
         Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_BAS));
         Console.Write(COIN_BAS_DROIT);
