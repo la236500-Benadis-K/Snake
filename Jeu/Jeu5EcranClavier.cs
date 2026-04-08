@@ -18,7 +18,7 @@ public partial class Snake
 
         // MATIERE A UTILISER
         // - padding de chaînes de caractères
-        int centre = ((LARGEUR_ECRAN + texte.Length) / 2);
+        int centre = ((Console.WindowWidth + texte.Length) / 2);
         Console.WriteLine(texte.PadLeft(centre));
     }
 
