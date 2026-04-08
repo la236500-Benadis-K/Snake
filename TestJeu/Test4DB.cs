@@ -29,5 +29,76 @@ public class TestDB
         // A COMPLETER
     }
 
-    // A COMPLETER
+
+    [TestMethod]
+    public void VerifierPseudoNull()
+    {
+
+        string pseudo = null;
+
+        bool resultat = Snake.VerifierPseudo(pseudo);
+
+
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
+    public void VerifierPseudoTropCourt()
+    {
+        string pseudo = "kh";
+
+        bool resultat = Snake.VerifierPseudo(pseudo);
+
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
+    public void VerifierPseudoTropLong()
+    {
+        string pseudo = "kheireddineBenadisHelha";
+
+        bool resultat = Snake.VerifierPseudo(pseudo);
+
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
+    public void VerifierPseudoCaractereInvalide()
+    {
+        string pseudo = "kh+ben";
+
+        bool resultat = Snake.VerifierPseudo(pseudo);
+
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
+    public void VerifierPseudoEspace()
+    {
+        string pseudo = "kh ben";
+
+        bool resultat = Snake.VerifierPseudo(pseudo);
+
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
+    public void VerifierPseudoValide()
+    {
+        string pseudo = "kheireddine";
+
+        bool resultat = Snake.VerifierPseudo(pseudo);
+
+        Assert.IsTrue(resultat);
+    }
+
+    [TestMethod]
+    public void VerifierPseudoValideTraitUnion()
+    {
+        string pseudo = "kh-ben";
+
+        bool resultat = Snake.VerifierPseudo(pseudo);
+
+        Assert.IsTrue(resultat);
+    }
 }
