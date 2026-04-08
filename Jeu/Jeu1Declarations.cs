@@ -117,14 +117,14 @@ public partial class Snake
     // Caractères pour la bordure autour du jeu (pour les calculs et l'affichage) 
     // Exemples de possibilités : ▐ ▌ ▄ ▀ ▗ ▖ ▝ ▘
     // A COMPLETER
-    public const char COIN_HAUT_DROIT = '▝';
-    public const char COIN_HAUT_GAUCHE = '▘';
-    public const char BORD_DROIT = '▐';
-    public const char BORD_GAUCHE = '▌';
-    public const char COIN_BAS_DROIT = '▗';
-    public const char COIN_BAS_GAUCHE = '▖';
-    public const char BORD_HAUT = '▀';
-    public const char BORD_BAS = '▄';
+    public const char COIN_HAUT_DROIT = '▖';
+    public const char COIN_HAUT_GAUCHE = '▗';
+    public const char BORD_DROIT = '▌';
+    public const char BORD_GAUCHE = '▐';
+    public const char COIN_BAS_DROIT = '▘';
+    public const char COIN_BAS_GAUCHE = '▝';
+    public const char BORD_HAUT = '▄';
+    public const char BORD_BAS = '▀';
 
 
     // Dessins de anneaux du serpent
@@ -134,9 +134,9 @@ public partial class Snake
     // A COMPLETER
     public const string DESSIN_CORPS = "██";
     public const string DESSIN_TETE_HAUT = "ɥ ";
-    public const string DESSIN_TETE_BAS = "h ";
-    public const string DESSIN_TETE_GAUCHE = "≺ ";
-    public const string DESSIN_TETE_DROITE = "≻ ";
+    public const string DESSIN_TETE_BAS = " h";
+    public const string DESSIN_TETE_GAUCHE = "≻█";
+    public const string DESSIN_TETE_DROITE = "█≺";
 
     // Constantes pour la vitesse minimum et maximum (de 1 à 100)
     // A COMPLETER
@@ -184,4 +184,7 @@ public partial class Snake
     // A COMPLETER
     public static int LARGEUR_ECRAN = LARGEUR_TERRAIN * 2;
     public static int HAUTEUR_ECRAN = HAUTEUR_TERRAIN;
+
+    public static int MARGE_GAUCHE = 0;
+    public static int MARGE_HAUT = 0;
 }
