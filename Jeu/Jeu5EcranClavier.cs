@@ -299,11 +299,7 @@ et changer la configuration du jeu (taille et couleurs)");
         // - affichage à la Console
         // - positionnement du curseur de la console
         
-        int ligneLogo = 4; 
-        
-
-
-        Console.SetCursorPosition(0, ligneLogo);
+        Console.SetCursorPosition(0, HAUTEUR_ECRAN/2);
         AfficherTexteCentre(" ██████   █████  ███    ███ ███████      ██████  ██    ██ ███████ ██████  ");
         AfficherTexteCentre("██       ██   ██ ████  ████ ██          ██    ██ ██    ██ ██      ██   ██ ");
         AfficherTexteCentre("██   ███ ███████ ██ ████ ██ █████       ██    ██ ██    ██ █████   ██████  ");
