@@ -9,7 +9,7 @@ public partial class Snake
     // - la valeur par défaut est pour la production
     // - la valeur pour les tests doit être changée par les tests
     // Rappel: le nom DOIT comporter le numéro d'étudiant LAxxxxxx dans les deux cas !
-    public static string DBNAME = "DbLAxxxxxx"; // Mettre son numéro d'étudiant
+    public static string DBNAME = "DbLA236500"; // Mettre son numéro d'étudiant
 
     /// <summary>
     /// Vérification d'un pseudo
@@ -26,7 +26,31 @@ public partial class Snake
         // MATIERE A UTILISER
         // - parcours des chaînes de caractères
 
-        throw new NotImplementedException();
+        //vérifie que le pseudo n'est pas null
+        if (pseudoAVerifier == null)
+        {
+            return false;
+        }
+
+        //si le pseudo ne contient pas entre 3 et 20 caractère on return false
+        if (pseudoAVerifier.Length < LONGUEUR_MIN_PSEUDO || pseudoAVerifier.Length > LONGUEUR_MAX_PSEUDO)
+        {
+            return false;
+        }
+
+        
+        foreach (char c in pseudoAVerifier)
+        {
+            //si le caractère n'est pas une lettre ou un trait d'union on return false
+            if (!char.IsLetter(c) && c != '-')
+            {
+                
+                return false;
+            }
+        }
+
+        
+        return true;
     }
 
     /// <summary>
