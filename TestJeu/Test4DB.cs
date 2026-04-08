@@ -83,6 +83,16 @@ public class TestDB
     }
 
     [TestMethod]
+    public void VerifierPseudoChiffre()
+    {
+        string pseudo = "kh1273";
+
+        bool resultat = Snake.VerifierPseudo(pseudo);
+
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
     public void VerifierPseudoValide()
     {
         string pseudo = "kheireddine";
