@@ -433,8 +433,8 @@ et changer la configuration du jeu (taille et couleurs)");
 
 
         string dessin = DESSIN_CORPS;
-        int colonne = caseADessiner.x * 2 + 1;
-        int ligne = caseADessiner.y + 1;
+        int colonne = caseADessiner.x * 2 + 1 + MARGE_GAUCHE;
+        int ligne = caseADessiner.y + 1 + MARGE_HAUT;
 
         Console.SetCursorPosition(colonne, ligne);
 
@@ -481,8 +481,8 @@ et changer la configuration du jeu (taille et couleurs)");
         // - positionnement du curseur de la console
 
         string gateau_dessin = GATEAU_DESSIN;
-        int colonne = caseADessiner.x * 2 + 1;
-        int ligne = caseADessiner.y + 1;
+        int colonne = caseADessiner.x * 2 + 1 + MARGE_GAUCHE;
+        int ligne = caseADessiner.y + 1 + MARGE_HAUT;
 
         Console.SetCursorPosition(colonne, ligne);
         Console.Write(gateau_dessin);
@@ -504,8 +504,8 @@ et changer la configuration du jeu (taille et couleurs)");
         // - affichage à la Console
         // - positionnement du curseur de la console
         
-        int colonne = caseAEffacer.x * 2 + 1;//*2 car un anneau fais 2 caractères
-        int ligne = caseAEffacer.y + 1;//+1 pour pas spawn dans le mur
+        int colonne = caseAEffacer.x * 2 + 1 + MARGE_GAUCHE;//*2 car un anneau fais 2 caractères
+        int ligne = caseAEffacer.y + 1 + MARGE_HAUT;//+1 pour pas spawn dans le mur
         Console.SetCursorPosition(colonne, ligne);
         Console.Write("  ");
     }
