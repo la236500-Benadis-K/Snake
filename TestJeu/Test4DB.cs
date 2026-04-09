@@ -85,6 +85,10 @@ public class TestDB
         Assert.IsTrue(resultat, messageDerreur);
     }
 
+    /******************************************************
+        TEST POUR VERIFIER LE PSEUDO
+    ******************************************************/
+
     [TestMethod]
     public void VerifierPseudoNull()
     {
@@ -165,5 +169,42 @@ public class TestDB
         bool resultat = Snake.VerifierPseudo(pseudo);
 
         Assert.IsTrue(resultat);
+    }
+
+    /******************************************************
+        TEST POUR AJOUTERJOUEUR()
+    ******************************************************/
+
+    [TestMethod]
+    public void AjouterJoueurPseudoInvalide()
+    {
+        InitTestDB();
+        bool resultat = Snake.AjouterJoueur("kh", out string messageDerreur);
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
+    public void AjouterJoueurOK()
+    {
+        InitTestDB();
+        bool resultat = Snake.AjouterJoueur("kheireddine", out string messageDerreur);
+        Assert.IsTrue(resultat, messageDerreur);
+    }
+
+    [TestMethod]
+    public void AjouterJoueurDejaExistant()
+    {
+        InitTestDB();
+        Snake.AjouterJoueur("kheireddine", out string messageDerreur);
+        bool resultat = Snake.AjouterJoueur("kheireddine", out messageDerreur);
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
+    public void AjouterJoueurErreurDB()
+    {
+        Snake.DBNAME = "db invalide";
+        bool resultat = Snake.AjouterJoueur("kheireddine", out string messageDerreur);
+        Assert.IsFalse(resultat);
     }
 }
