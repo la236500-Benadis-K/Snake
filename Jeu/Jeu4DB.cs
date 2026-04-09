@@ -76,7 +76,29 @@ public partial class Snake
         // - gestion d'erreur
         // - out
 
-        throw new NotImplementedException();
+        try
+        {
+            using (MySqlConnection connexion = new MySqlConnection(GetConnectionString()))
+            {
+                connexion.Open();
+
+                //drop la table si elle existe 
+                string query = "DROP TABLE IF EXISTS Score; DROP TABLE IF EXISTS Joueur;";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connexion))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            messageDerreur = "Tables effacées avec succès.";
+            return true;
+        }
+        catch (Exception e)
+        {
+            messageDerreur = "Erreur lors de l'effacement des tables : " + e.Message;
+            return false;
+        }
     }
 
     /// <summary>
