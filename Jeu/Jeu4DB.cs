@@ -11,6 +11,12 @@ public partial class Snake
     // Rappel: le nom DOIT comporter le numéro d'étudiant LAxxxxxx dans les deux cas !
     public static string DBNAME = "DbLA236500"; // Mettre son numéro d'étudiant
 
+    //fonction pour se connecter à la db
+    private static string GetConnectionString()
+    {
+        return $"Server=localhost;Database={DBNAME};Uid=root;Pwd=;";
+    }
+
     /// <summary>
     /// Vérification d'un pseudo
     /// - Il ne peut être  null
@@ -38,18 +44,18 @@ public partial class Snake
             return false;
         }
 
-        
+
         foreach (char c in pseudoAVerifier)
         {
             //si le caractère n'est pas une lettre ou un trait d'union on return false
             if (!char.IsLetter(c) && c != '-')
             {
-                
+
                 return false;
             }
         }
 
-        
+
         return true;
     }
 
