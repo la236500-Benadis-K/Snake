@@ -116,7 +116,40 @@ public partial class Snake
         // - gestion d'erreur
         // - out
 
-        throw new NotImplementedException();
+        try
+        {
+            using (MySqlConnection connexion = new MySqlConnection(GetConnectionString()))
+            {
+                connexion.Open();
+
+                // Le @ devant les guillemets permet d'écrire sur plusieurs lignes en C#, c'est plus propre !
+                string requette = @"
+                    CREATE TABLE IF NOT EXISTS Joueur (
+                        Id_joueur INT AUTO_INCREMENT PRIMARY KEY,
+                        Pseudo VARCHAR(20) NOT NULL UNIQUE
+                    );
+
+                    CREATE TABLE IF NOT EXISTS Score (
+                        Id_score INT AUTO_INCREMENT PRIMARY KEY,
+                        Id_joueur INT NOT NULL,
+                        Points INT NOT NULL,
+                        FOREIGN KEY (Id_joueur) REFERENCES Joueur(Id_joueur) ON DELETE CASCADE
+                    );";
+
+                using (MySqlCommand cmd = new MySqlCommand(requette, connexion))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            messageDerreur = "Tables créées avec succès.";
+            return true;
+        }
+        catch (Exception e)
+        {
+            messageDerreur = "Erreur lors de la création des tables : " + e.Message;
+            return false;
+        }
     }
 
     /// <summary>
