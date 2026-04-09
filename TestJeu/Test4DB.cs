@@ -10,7 +10,7 @@ namespace TestJeu;
 [DoNotParallelize]
 public class TestDB
 {
-    static readonly string DBNAME_TEST = "DbTestLAxxxxxx"; // mettre son numéro d'étudiant
+    static readonly string DBNAME_TEST = "DbTestLA236500"; // mettre son numéro d'étudiant
 
     [TestInitialize()]
     public void InitAllTest()
@@ -27,8 +27,63 @@ public class TestDB
         Assert.IsTrue(resultat, "Effacer DB : " + messageDerreur);
         resultat = Snake.CreerDB(out messageDerreur);
         // A COMPLETER
+
+        Assert.IsTrue(resultat, "Créer DB : " + messageDerreur);
     }
 
+    /******************************************************
+        TEST POUR CRÉER ET EFFACER LA DB
+    ******************************************************/
+    [TestMethod]
+    public void CreerDBOK()
+    {
+        InitTestDB();
+        Assert.IsTrue(true);
+    }
+
+    [TestMethod]
+    public void CreerDBErreur()
+    {
+        Snake.DBNAME = "Db invalide";
+        bool resultat = Snake.CreerDB(out string messageDerreur);
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
+    public void CreerDBDeuxFois()
+    {
+        InitTestDB();
+        bool resultat = Snake.CreerDB(out string messageDerreur);
+        resultat = Snake.CreerDB(out messageDerreur);
+        Assert.IsTrue(resultat, messageDerreur);
+    }
+
+
+
+    [TestMethod]
+    public void EffacerDBOK()
+    {
+        InitTestDB();
+        bool resultat = Snake.EffacerDB(out string messageDerreur);
+        Assert.IsTrue(resultat, messageDerreur);
+    }
+
+    [TestMethod]
+    public void EffacerDBErreur()
+    {
+        Snake.DBNAME = "Db invalide";
+        bool resultat = Snake.EffacerDB(out string messageDerreur);
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
+    public void EffacerDBDeuxFois()
+    {
+        InitTestDB();
+        Snake.EffacerDB(out string messageDerreur);
+        bool resultat = Snake.EffacerDB(out messageDerreur);
+        Assert.IsTrue(resultat, messageDerreur);
+    }
 
     [TestMethod]
     public void VerifierPseudoNull()
