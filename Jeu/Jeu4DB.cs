@@ -112,7 +112,25 @@ public partial class Snake
         // - utilisation de base de données
         // - out
 
-        throw new NotImplementedException();
+        string requette = "SELECT Id_joueur FROM Joueur WHERE Pseudo = @pseudo";
+
+        using (MySqlCommand commande = new MySqlCommand(requette, connexion))
+
+        {
+            commande.Parameters.AddWithValue("@pseudo", pseudo);
+
+            object resultat = commande.ExecuteScalar();
+
+            if (resultat == null)
+            {
+                return -1;
+            }
+
+            return Convert.ToInt32(resultat);
+
+        }
+
+
     }
 
     /// <summary>
