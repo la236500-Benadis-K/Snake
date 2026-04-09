@@ -305,20 +305,38 @@ et changer la configuration du jeu (taille et couleurs)");
         AfficherTexteCentre("██   ███ ███████ ██ ████ ██ █████       ██    ██ ██    ██ █████   ██████  ");
         AfficherTexteCentre("██    ██ ██   ██ ██  ██  ██ ██          ██    ██  ██  ██  ██      ██   ██ ");
         AfficherTexteCentre(" ██████  ██   ██ ██      ██ ███████      ██████    ████   ███████ ██   ██ ");
-            
 
-        string pseudo; 
+
+        string pseudo;
+        bool saisieValide = false;
+
+        const string MESSAGE = "Pseudo (3 à 20 lettres) ou ENTER pour rester anonyme: ";
+        int posX = (LARGEUR_ECRAN / 2) - (MESSAGE.Length / 2);
+        int posY = HAUTEUR_ECRAN + 3;
+
+        do
+        {
+            Console.SetCursorPosition(posX, posY);
+            Console.Write(MESSAGE);
+            pseudo = Console.ReadLine();
+
+            if (pseudo == "")
+            {
+                pseudo = "Anonyme";
+                saisieValide = true;
+            }
+
+            else if (VerifierPseudo(pseudo))
+            {
+                saisieValide = true;
+            }
+
+        } while (!VerifierPseudo(pseudo));
+            
         ScorePartie scorePartie = new ScorePartie();
         scorePartie.points = partie.Score;
-
-            do
-            {
-                AfficherTexteCentre("Pseudo (3 à 20 lettres) ou ENTER :");
-                pseudo = Console.ReadLine();
-            } while (pseudo.Length < LONGUEUR_MIN_PSEUDO || pseudo.Length > LONGUEUR_MAX_PSEUDO);
-            
-            scorePartie.pseudo = pseudo;
-            
+        scorePartie.pseudo = pseudo;
+                
             AttendreTouche();
         
     }
