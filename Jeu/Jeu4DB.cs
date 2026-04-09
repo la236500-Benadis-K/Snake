@@ -221,7 +221,48 @@ public partial class Snake
         // - gestion d'erreur
         // - out
 
-        throw new NotImplementedException();
+
+
+        //vérifie le pseudo
+        if (!VerifierPseudo(pseudo))
+        {
+            messageDerreur = "pseudo invalide";
+            return false; 
+        }
+
+        try
+        {
+            using (MySqlConnection connexion = new MySqlConnection(GetConnectionString()))
+            {
+                connexion.Open();
+
+                //regarde si le joueur est dans la db
+                int idJoueur = LireIDJoueur(connexion, pseudo);
+
+                if (idJoueur != -1)
+                {
+                    messageDerreur = $"Le joueur '{pseudo}' existe déjà.";
+                    return false; 
+                }
+
+                //on l'ajoute dans la table
+                string requete = "INSERT INTO Joueur (Pseudo) VALUES (@pseudo)";
+
+                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                {
+                    cmd.Parameters.AddWithValue("@pseudo", pseudo);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            messageDerreur = "Joueur ajouté dans la table";
+            return true;
+        }
+        catch (Exception e)
+        {
+            messageDerreur = "Erreur lors de l'ajout du joueur : " + e.Message;
+            return false;
+        }
     }
 
     /// <summary>
