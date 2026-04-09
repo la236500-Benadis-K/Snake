@@ -14,7 +14,7 @@ public partial class Snake
     //fonction pour se connecter à la db
     private static string GetConnectionString()
     {
-        return $"Server=localhost;Database={DBNAME};Uid=root;Pwd=;";
+        return $"Server=127.0.0.1;Database={DBNAME};Uid=root;Pwd=;";
     }
 
     /// <summary>
@@ -78,25 +78,22 @@ public partial class Snake
 
         try
         {
-            using (MySqlConnection connexion = new MySqlConnection(GetConnectionString()))
+            string connSansDB = $"Server=127.0.0.1;Uid=root;Pwd=;";
+            using (MySqlConnection connexion = new MySqlConnection(connSansDB))
             {
                 connexion.Open();
-
-                //drop la table si elle existe 
-                string query = "DROP TABLE IF EXISTS Score; DROP TABLE IF EXISTS Joueur;";
-
+                string query = $@"DROP DATABASE IF EXISTS {DBNAME};";
                 using (MySqlCommand cmd = new MySqlCommand(query, connexion))
                 {
                     cmd.ExecuteNonQuery();
                 }
             }
-
-            messageDerreur = "Tables effacées avec succès.";
+            messageDerreur = "Base de données effacée avec succès.";
             return true;
         }
         catch (Exception e)
         {
-            messageDerreur = "Erreur lors de l'effacement des tables : " + e.Message;
+            messageDerreur = "Erreur lors de l'effacement : " + e.Message;
             return false;
         }
     }
@@ -118,6 +115,18 @@ public partial class Snake
 
         try
         {
+            // Connexion SANS DB pour créer la DB
+            string connSansDB = $"Server=127.0.0.1;Uid=root;Pwd=;";
+            using (MySqlConnection connexion = new MySqlConnection(connSansDB))
+            {
+                connexion.Open();
+                string creerDB = $"CREATE DATABASE IF NOT EXISTS {DBNAME};";
+                using (MySqlCommand cmd = new MySqlCommand(creerDB, connexion))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
             using (MySqlConnection connexion = new MySqlConnection(GetConnectionString()))
             {
                 connexion.Open();
@@ -133,7 +142,7 @@ public partial class Snake
                         Id_score INT AUTO_INCREMENT PRIMARY KEY,
                         Id_joueur INT NOT NULL,
                         Points INT NOT NULL,
-                        FOREIGN KEY (Id_joueur) REFERENCES Joueur(Id_joueur) ON DELETE CASCADE
+                        CONSTRAINT fk_score_joueur FOREIGN KEY (Id_joueur) REFERENCES Joueur(Id_joueur) ON DELETE CASCADE
                     );";
 
                 using (MySqlCommand cmd = new MySqlCommand(requette, connexion))
