@@ -47,6 +47,7 @@ public class TestDB
         Snake.DBNAME = "Db invalide";
         bool resultat = Snake.CreerDB(out string messageDerreur);
         Assert.IsFalse(resultat);
+        Snake.DBNAME = DBNAME_TEST;
     }
 
     [TestMethod]
@@ -74,6 +75,7 @@ public class TestDB
         Snake.DBNAME = "Db invalide";
         bool resultat = Snake.EffacerDB(out string messageDerreur);
         Assert.IsFalse(resultat);
+        Snake.DBNAME = DBNAME_TEST;
     }
 
     [TestMethod]
@@ -206,5 +208,45 @@ public class TestDB
         Snake.DBNAME = "db invalide";
         bool resultat = Snake.AjouterJoueur("kheireddine", out string messageDerreur);
         Assert.IsFalse(resultat);
+        Snake.DBNAME = DBNAME_TEST;
     }
+
+    /******************************************************
+            TEST POUR AJOUTERSCORE()
+    ******************************************************/
+
+    [TestMethod]
+    public void AjouterScorePseudoInvalide()
+    {
+        InitTestDB();
+        bool resultat = Snake.AjouterScore("kh", 100, out string messageDerreur);
+        Assert.IsFalse(resultat);
+    }
+
+    [TestMethod]
+    public void AjouterScoreJoueurExistant()
+    {
+        InitTestDB();
+        Snake.AjouterScore("kheireddine", 20, out string messageDerreur);
+        bool resultat = Snake.AjouterScore("kheireddine", 25, out messageDerreur);
+        Assert.IsTrue(resultat, messageDerreur);
+    }
+
+    [TestMethod]
+    public void AjouterScoreNouveauJoueur()
+    {
+        InitTestDB();
+        bool resultat = Snake.AjouterScore("kheireddine", 30, out string messageDerreur);
+        Assert.IsTrue(resultat, messageDerreur);
+    }
+
+    [TestMethod]
+    public void AjouterScoreErreurDB()
+    {
+        Snake.DBNAME = "db invalide";
+        bool resultat = Snake.AjouterScore("kheireddine", 30, out string messageDerreur);
+        Assert.IsFalse(resultat);
+        Snake.DBNAME = DBNAME_TEST;
+    }
+
 }
