@@ -262,19 +262,34 @@ et changer la configuration du jeu (taille et couleurs)");
         // - utilisation d'une Liste de Structures
         // - switch
         //━┃╋
-        int largeurCol1 = 6;//points
-        int largeurCol2 = 15;//pseudo
+        int largeurCol1 = 6;
+        int largeurCol2 = 15;
 
         EffacerEtAfficherGrandTitre();
 
-        string ligneEntete = "Points".PadRight(largeurCol1) + "┃ " + "Pseudo".PadRight(largeurCol2);//affiche Points┃Pseudo
-
+        string ligneEntete = "Points".PadRight(largeurCol1) + "┃ " + "Pseudo".PadRight(largeurCol2);
         string ligneCol1 = "".PadRight(largeurCol1, '━');
         string ligneCol2 = "".PadRight(largeurCol2 + 1, '━');
-        string separateurHorizontal = ligneCol1 + "╋" + ligneCol2;
+        string separateur = ligneCol1 + "╋" + ligneCol2;
 
-        AfficherTexteCentre(ligneEntete);
-        AfficherTexteCentre(separateurHorizontal);
+
+
+        List<ScorePartie>? scores = LireScores(10, out string messageErreur);
+
+        if (scores == null || scores.Count == 0)
+        {
+            AfficherTexteCentre("Aucun score enregistré.");
+        }
+        else
+        {
+            AfficherTexteCentre(ligneEntete);
+            AfficherTexteCentre(separateur);
+            foreach (ScorePartie score in scores)
+            {
+                string ligne = score.points.ToString().PadRight(largeurCol1) + "┃ " + score.pseudo.PadRight(largeurCol2);
+                AfficherTexteCentre(ligne);
+            }
+        }
 
         AttendreTouche();
 
@@ -298,8 +313,8 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
-        
-        Console.SetCursorPosition(0, HAUTEUR_ECRAN/2);
+
+        Console.SetCursorPosition(0, HAUTEUR_ECRAN / 2);
         AfficherTexteCentre(" ██████   █████  ███    ███ ███████      ██████  ██    ██ ███████ ██████  ");
         AfficherTexteCentre("██       ██   ██ ████  ████ ██          ██    ██ ██    ██ ██      ██   ██ ");
         AfficherTexteCentre("██   ███ ███████ ██ ████ ██ █████       ██    ██ ██    ██ █████   ██████  ");
@@ -331,14 +346,14 @@ et changer la configuration du jeu (taille et couleurs)");
                 saisieValide = true;
             }
 
-        } while (!VerifierPseudo(pseudo));
-            
+        } while (!saisieValide);
+
         ScorePartie scorePartie = new ScorePartie();
         scorePartie.points = partie.Score;
         scorePartie.pseudo = pseudo;
-                
-            AttendreTouche();
-        
+        AjouterScore(scorePartie.pseudo, scorePartie.points, out string messageErreur);
+        AttendreTouche();
+
     }
 
     /// <summary>
@@ -372,7 +387,7 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
-        
+
         Console.Clear();
 
         MARGE_GAUCHE = (Console.WindowWidth - (LARGEUR_ECRAN + 2)) / 2;
@@ -382,7 +397,7 @@ et changer la configuration du jeu (taille et couleurs)");
             MARGE_GAUCHE = 0;
         }
 
-        if(MARGE_HAUT < 0)
+        if (MARGE_HAUT < 0)
         {
             MARGE_HAUT = 0;
         }
@@ -390,7 +405,7 @@ et changer la configuration du jeu (taille et couleurs)");
         // Ligne haut
         Console.SetCursorPosition(MARGE_GAUCHE, MARGE_HAUT);
         Console.Write(COIN_HAUT_GAUCHE);
-        Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_HAUT)); 
+        Console.Write("".PadLeft(LARGEUR_ECRAN, BORD_HAUT));
         Console.Write(COIN_HAUT_DROIT);
 
         // Côtés gauche et droit
@@ -419,14 +434,14 @@ et changer la configuration du jeu (taille et couleurs)");
             {
                 tete = false;
             }
-            
+
             DessinerAnneau(partie.Serpent[i], tete, partie.DirectionSerpent);
         }
 
-       
+
         DessinerGateau(partie.PositionGateau);
 
-        
+
     }
 
 
@@ -517,7 +532,7 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
-        
+
         int colonne = caseAEffacer.x * 2 + 1 + MARGE_GAUCHE;//*2 car un anneau fais 2 caractères
         int ligne = caseAEffacer.y + 1 + MARGE_HAUT;//+1 pour pas spawn dans le mur
         Console.SetCursorPosition(colonne, ligne);
@@ -545,22 +560,22 @@ et changer la configuration du jeu (taille et couleurs)");
 
         // BONUS POSSIBLE
         // - ambiance sonore
-        
-        //on dessine la nouvelle tete index 0
-       DessinerAnneau(partie.Serpent[0],true,partie.DirectionSerpent);
-       
-       //on dessine un anneau pour remplacer la tête
-       DessinerAnneau(partie.Serpent[1],false,partie.DirectionSerpent);
 
-       //si il ne mange pas 
-       if (partie.EnleverQueue)
-       {
-           EffacerQueue(partie.EffacerQueue);//on avance en effacant la queue de la dernière position
-       }
-       else
-       {
-           DessinerGateau(partie.PositionGateau);// il a mangé donc on re dessine un gateau
-       }
+        //on dessine la nouvelle tete index 0
+        DessinerAnneau(partie.Serpent[0], true, partie.DirectionSerpent);
+
+        //on dessine un anneau pour remplacer la tête
+        DessinerAnneau(partie.Serpent[1], false, partie.DirectionSerpent);
+
+        //si il ne mange pas 
+        if (partie.EnleverQueue)
+        {
+            EffacerQueue(partie.EffacerQueue);//on avance en effacant la queue de la dernière position
+        }
+        else
+        {
+            DessinerGateau(partie.PositionGateau);// il a mangé donc on re dessine un gateau
+        }
     }
 
     /// <summary>
@@ -604,7 +619,7 @@ et changer la configuration du jeu (taille et couleurs)");
             delai = 0;
         }
         Thread.Sleep(delai);
-        
+
     }
 
 
@@ -643,7 +658,7 @@ et changer la configuration du jeu (taille et couleurs)");
                     nouvelleDirection = Directions.Droite;
                     break;
             }
-            partie.DirectionSerpent = CalculerNouvelleDirection(partie.DirectionSerpent,nouvelleDirection);
+            partie.DirectionSerpent = CalculerNouvelleDirection(partie.DirectionSerpent, nouvelleDirection);
         }
     }
 }
