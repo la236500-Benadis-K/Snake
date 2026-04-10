@@ -14,7 +14,7 @@ public partial class Snake
     //fonction pour se connecter à la db
     private static string GetConnectionString()
     {
-        return $"Server=127.0.0.1;Database={DBNAME};Uid=root;Pwd=;";
+        return $"Server=localhost;Database={DBNAME};Uid=root;Pwd=;";
     }
 
     /// <summary>
@@ -78,7 +78,7 @@ public partial class Snake
 
         try
         {
-            string connSansDB = $"Server=127.0.0.1;Uid=root;Pwd=;";
+            string connSansDB = $"Server=localhost;Uid=root;Pwd=;";
             using (MySqlConnection connexion = new MySqlConnection(connSansDB))
             {
                 connexion.Open();
@@ -116,7 +116,7 @@ public partial class Snake
         try
         {
             // Connexion SANS DB pour créer la DB
-            string connSansDB = $"Server=127.0.0.1;Uid=root;Pwd=;";
+            string connSansDB = $"Server=localhost;Uid=root;Pwd=;";
             using (MySqlConnection connexion = new MySqlConnection(connSansDB))
             {
                 connexion.Open();
@@ -308,7 +308,7 @@ public partial class Snake
                 //si le joueur n'existe pas on le crée
                 if (idJoueur == -1)
                 {
-                    
+
                     connexion.Close();
 
                     //si l'ajout du joueur ne fonctionne pas on return false
@@ -360,6 +360,44 @@ public partial class Snake
         // - out
         // - création et remplissage d'une liste de structures ScorePartie
 
-        throw new NotImplementedException();
+        try
+        {
+            List<ScorePartie> scores = new List<ScorePartie>();
+
+            using (MySqlConnection connexion = new MySqlConnection(GetConnectionString()))
+            {
+                connexion.Open();
+
+                string requete = @"SELECT J.Pseudo, S.Points 
+                               FROM Score S
+                               JOIN Joueur J ON S.Id_joueur = J.Id_joueur
+                               ORDER BY S.Points DESC
+                               LIMIT @nombreDeScores";
+
+                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                {
+                    cmd.Parameters.AddWithValue("@nombreDeScores", nombreDeScores);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ScorePartie score = new ScorePartie();
+                            score.pseudo = reader.GetString("Pseudo");
+                            score.points = reader.GetInt32("Points");
+                            scores.Add(score);
+                        }
+                    }
+                }
+            }
+
+            messageDerreur = "";
+            return scores;
+        }
+        catch (Exception e)
+        {
+            messageDerreur = "Erreur lors de la lecture des scores : " + e.Message;
+            return null;
+        }
     }
 }
