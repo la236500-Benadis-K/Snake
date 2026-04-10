@@ -249,4 +249,48 @@ public class TestDB
         Snake.DBNAME = DBNAME_TEST;
     }
 
+    /******************************************************
+            TEST POUR LIRESCORES()
+    ******************************************************/
+
+    [TestMethod]
+    public void LireScoresListeVide()
+    {
+        InitTestDB();
+        List<Snake.ScorePartie>? scores = Snake.LireScores(10, out string messageDerreur);
+        Assert.IsNotNull(scores);
+        Assert.AreEqual(0, scores.Count);
+    }
+
+    [TestMethod]
+    public void LireScoresAvecScores()
+    {
+        InitTestDB();
+        Snake.AjouterScore("kheireddine", 30, out string messageDerreur);
+        Snake.AjouterScore("benadis", 20, out messageDerreur);
+        List<Snake.ScorePartie>? scores = Snake.LireScores(10, out messageDerreur);
+        Assert.IsNotNull(scores);
+        Assert.AreEqual(2, scores.Count);
+    }
+
+    [TestMethod]
+    public void LireScoresLimiteOK()
+    {
+        InitTestDB();
+        Snake.AjouterScore("kheireddine", 30, out string messageDerreur);
+        Snake.AjouterScore("benadis", 20, out messageDerreur);
+        Snake.AjouterScore("helha", 25, out messageDerreur);
+        List<Snake.ScorePartie>? scores = Snake.LireScores(2, out messageDerreur);
+        Assert.IsNotNull(scores);
+        Assert.AreEqual(2, scores.Count);
+    }
+
+    [TestMethod]
+    public void LireScoresErreurDB()
+    {
+        Snake.DBNAME = "db invalide";
+        List<Snake.ScorePartie>? scores = Snake.LireScores(10, out string messageDerreur);
+        Assert.IsNull(scores);
+    }
+
 }
