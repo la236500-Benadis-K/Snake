@@ -227,7 +227,7 @@ public partial class Snake
         if (!VerifierPseudo(pseudo))
         {
             messageDerreur = "pseudo invalide";
-            return false; 
+            return false;
         }
 
         try
@@ -242,7 +242,7 @@ public partial class Snake
                 if (idJoueur != -1)
                 {
                     messageDerreur = $"Le joueur '{pseudo}' existe déjà.";
-                    return false; 
+                    return false;
                 }
 
                 //on l'ajoute dans la table
@@ -289,7 +289,59 @@ public partial class Snake
         // - gestion d'erreur
         // - out
 
-        throw new NotImplementedException();
+        // vérifie le pseudo
+        if (!VerifierPseudo(pseudo))
+        {
+            messageDerreur = "Le pseudo est invalide.";
+            return false;
+        }
+
+        try
+        {
+            using (MySqlConnection connexion = new MySqlConnection(GetConnectionString()))
+            {
+                connexion.Open();
+
+                //regarde si le joueur existe déjà
+                int idJoueur = LireIDJoueur(connexion, pseudo);
+
+                //si le joueur n'existe pas on le crée
+                if (idJoueur == -1)
+                {
+                    
+                    connexion.Close();
+
+                    //si l'ajout du joueur ne fonctionne pas on return false
+                    if (!AjouterJoueur(pseudo, out messageDerreur))
+                    {
+                        return false;
+                    }
+
+                    // on récupère l'id du joueur
+                    connexion.Open();
+                    idJoueur = LireIDJoueur(connexion, pseudo);
+                }
+
+                // on ajoute le score dans la table Score
+                string requete = "INSERT INTO Score (Id_joueur, Points) VALUES (@idJoueur, @points)";
+
+                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                {
+                    cmd.Parameters.AddWithValue("@idJoueur", idJoueur);
+                    cmd.Parameters.AddWithValue("@points", points);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            messageDerreur = "Score ajouté dans la table";
+            return true;
+        }
+        catch (Exception e)
+        {
+            messageDerreur = "Erreur lors de l'enregistrement du score : " + e.Message;
+            return false;
+        }
+
     }
 
     /// <summary>
