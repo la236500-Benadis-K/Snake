@@ -28,8 +28,10 @@ public partial class Snake
 
         // MATIERE A UTILISER
         // - mettre la culture à fr-BE
-        Partie partie = new();
+        Console.CursorVisible = false;
+        ChargerConfigurationParDefaut();
         CreerDB(out string messageErreur);
+        Partie partie = new();
         return partie;
 
         //throw new NotImplementedException();
@@ -51,7 +53,6 @@ public partial class Snake
         // MATIERE A UTILISER
         // - nombres aléatoires
         // - initialiser une Structure CaseDeJeu
-
         do
         {
             partie.PositionGateau.x = Random.Shared.Next(0, LARGEUR_TERRAIN);
