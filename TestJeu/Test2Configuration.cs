@@ -32,4 +32,24 @@ public class TestConfiguration
         ConsoleColor couleur = Snake.ConvertirCouleur("black", ConsoleColor.White);
         Assert.AreEqual(ConsoleColor.Black, couleur);
     }
+
+    /*****************************************************
+        Test CalculerParametres()
+    *****************************************************/
+
+    [TestMethod]
+    public void CalculerParametresLargeur()
+    {
+        Snake.LARGEUR_TERRAIN = 40;
+        Snake.CalculerParametres();
+        Assert.AreEqual(80, Snake.LARGEUR_ECRAN);
+    }
+
+    [TestMethod]
+    public void CalculerParametresHauteur()
+    {
+        Snake.HAUTEUR_TERRAIN = 20;
+        Snake.CalculerParametres();
+        Assert.AreEqual(20, Snake.HAUTEUR_ECRAN);
+    }
 }
