@@ -28,6 +28,10 @@ public partial class Snake
 
         // MATIERE A UTILISER
         // - mettre la culture à fr-BE
+        CultureInfo.CurrentCulture = new CultureInfo("fr-BE");
+        Console.BackgroundColor = COULEUR_FOND;
+        Console.ForegroundColor = COULEUR_SERPENT;
+
         Console.CursorVisible = false;
         ChargerConfigurationParDefaut();
         CreerDB(out string messageErreur);
@@ -283,7 +287,7 @@ public partial class Snake
             partie.PartieEnCours = false;
             return;
         }
-        
+
         // on vérifie si le serpent percute son corps, si oui on termine la partie 
         else if (VerifierCasePasVide(partie.Serpent, nouvelleTete, false))
         {
@@ -292,8 +296,8 @@ public partial class Snake
         }
 
 
-        partie.EffacerQueue = partie.Serpent[partie.Serpent.Count - 1]; 
-        
+        partie.EffacerQueue = partie.Serpent[partie.Serpent.Count - 1];
+
         // si le serpent mange un gateau
         if (nouvelleTete.x == partie.PositionGateau.x && nouvelleTete.y == partie.PositionGateau.y)
         {
@@ -303,14 +307,14 @@ public partial class Snake
             AjouterGateau(ref partie);
             partie.EnleverQueue = false;
         }
-        
+
         else
         {
-            partie.Serpent.Insert(0,nouvelleTete);
+            partie.Serpent.Insert(0, nouvelleTete);
             partie.EnleverQueue = true;//on supprime l'ancienne queue 
             Accelerer(ref partie);//le serpent accélère
         }
-            
+
     }
 
     /// <summary>
