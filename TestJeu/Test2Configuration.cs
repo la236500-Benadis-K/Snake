@@ -16,8 +16,20 @@ public class TestConfiguration
     public void ConversionCouleurOK()
     {
         ConsoleColor couleur = Snake.ConvertirCouleur("Black", ConsoleColor.White);
-        // A COMPLETER
+        Assert.AreEqual(ConsoleColor.Black, couleur);
     }
 
-    // A COMPLETER
+    [TestMethod]
+    public void ConversionCouleurInvalide()
+    {
+        ConsoleColor couleur = Snake.ConvertirCouleur("nul", ConsoleColor.White);
+        Assert.AreEqual(ConsoleColor.White, couleur);
+    }
+
+    [TestMethod]
+    public void ConversionCouleurCasse()
+    {
+        ConsoleColor couleur = Snake.ConvertirCouleur("black", ConsoleColor.White);
+        Assert.AreEqual(ConsoleColor.Black, couleur);
+    }
 }
