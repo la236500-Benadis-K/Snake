@@ -52,4 +52,25 @@ public class TestConfiguration
         Snake.CalculerParametres();
         Assert.AreEqual(20, Snake.HAUTEUR_ECRAN);
     }
+
+    /*****************************************************
+         Test ChargerConfigurationParDefaut()
+    *****************************************************/
+    [TestMethod]
+    public void ChargerConfigurationParDefautOK()
+    {
+        
+        Snake.LARGEUR_TERRAIN = 10;
+        Snake.HAUTEUR_TERRAIN = 5;
+        Snake.COULEUR_FOND = ConsoleColor.Red;
+
+        // Remet les valeurs par défaut
+        Snake.ChargerConfigurationParDefaut();
+
+        
+        Assert.AreEqual(30, Snake.LARGEUR_TERRAIN);
+        Assert.AreEqual(20, Snake.HAUTEUR_TERRAIN);
+        Assert.AreEqual(ConsoleColor.Black, Snake.COULEUR_FOND);
+        Assert.AreEqual(60, Snake.LARGEUR_ECRAN);
+    }
 }
