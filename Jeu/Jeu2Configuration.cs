@@ -15,7 +15,11 @@ public partial class Snake
     {
         // A COMPLETER
 
-        throw new NotImplementedException();
+        if (Enum.TryParse(chaine, true, out ConsoleColor couleur))
+        {
+            return couleur;
+        }
+        return defaut;
     }
 
     /// <summary>
@@ -65,7 +69,7 @@ public partial class Snake
     public static void LireConfiguration(string nomFichier)
     {
         // A COMPLETER
-        
+
         // FONCTION(S) A UTILISER: 
         // - ChargerConfigurationParDefaut()
         // - CalculerParametres()
