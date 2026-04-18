@@ -47,6 +47,18 @@ public partial class Snake
 
         // FONCTION(S) A UTILISER: 
         // - CalculerParametres()
+
+        LARGEUR_TERRAIN = 30;
+        HAUTEUR_TERRAIN = 20;
+        GATEAU_DESSIN = "⬤ ";
+
+        COULEUR_GATEAU = ConsoleColor.White;
+        COULEUR_SERPENT = ConsoleColor.White;
+        COULEUR_BORDURE = ConsoleColor.White;
+        COULEUR_FOND = ConsoleColor.Black;
+
+        CalculerParametres();
+
     }
 
     /// <summary>
