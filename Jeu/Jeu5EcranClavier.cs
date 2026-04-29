@@ -241,7 +241,37 @@ et changer la configuration du jeu (taille et couleurs)");
 
         EffacerEtAfficherGrandTitre();
         AfficherTexteCentre("Configurations");
-        AttendreTouche();
+        AfficherTexteCentre("1. Noir et blanc".PadRight(16));
+        AfficherTexteCentre("2. Rouge".PadRight(16));
+        AfficherTexteCentre("");
+        AfficherTexteCentre("");
+        Console.WriteLine();
+
+        // 4. On attend que l'utilisateur appuie sur une touche
+        ConsoleKeyInfo touche = Console.ReadKey(true);
+
+        // 5. On agit selon la touche pressée
+        switch (touche.Key)
+        {
+            case ConsoleKey.D1:
+                ChargerConfigurationParDefaut();
+                Console.BackgroundColor = COULEUR_FOND;
+                Console.ForegroundColor = COULEUR_SERPENT;
+                Console.Clear();
+                break;
+            case ConsoleKey.D2:
+                LireConfiguration("Config/exemple.config");
+                Console.BackgroundColor = COULEUR_FOND;
+                Console.ForegroundColor = COULEUR_SERPENT;
+                Console.Clear();
+                break;
+
+
+
+            default:
+
+                break;
+        }
     }
 
     /// <summary>
