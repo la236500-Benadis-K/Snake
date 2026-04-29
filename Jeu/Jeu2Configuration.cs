@@ -191,7 +191,7 @@ public partial class Snake
         }
         catch (Exception)
         {
-
+            ChargerConfigurationParDefaut();
         }
     }
 }
