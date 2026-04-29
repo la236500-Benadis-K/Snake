@@ -174,8 +174,11 @@ public partial class Snake
     // A COMPLETER
     public static ConsoleColor COULEUR_GATEAU = ConsoleColor.White;
     public static ConsoleColor COULEUR_SERPENT = ConsoleColor.White;
-    public static ConsoleColor COULEUR_BORDURE = ConsoleColor.White;
+    public static ConsoleColor COULEUR_BORD = ConsoleColor.White;
     public static ConsoleColor COULEUR_FOND = ConsoleColor.Black;
+    public static ConsoleColor COULEUR_TITRE = ConsoleColor.White;
+    public static ConsoleColor COULEUR_TETE_SERPENT = ConsoleColor.White;
+
 
 
     // Valeur dérivées de la configuration
