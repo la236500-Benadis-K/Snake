@@ -121,11 +121,6 @@ public partial class Snake
 
 
                 string[] partie = ligne.Split('=');
-                if (partie.Length < 2)//si il y'a moins de 2 valeurs on ignore la ligne
-                {
-                    continue;
-
-                }
 
                 string cle = partie[0].Trim().ToUpper();
                 string valeur = partie[1].Trim();
