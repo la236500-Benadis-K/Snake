@@ -31,6 +31,16 @@ public partial class Snake
     public static void CalculerParametres()
     {
         // A COMPLETER
+        if (LARGEUR_TERRAIN > 30)
+        {
+            LARGEUR_TERRAIN = 30;
+        }
+
+        if (HAUTEUR_TERRAIN > 30)
+        {
+            HAUTEUR_TERRAIN = 30;
+        }
+
         LARGEUR_ECRAN = LARGEUR_TERRAIN * 2;
         HAUTEUR_ECRAN = HAUTEUR_TERRAIN;
     }
