@@ -55,6 +55,8 @@ public partial class Snake
 
         // MATIERE A UTILISER
         // - affichage à la Console
+        Console.ForegroundColor = COULEUR_TITRE;
+
         Console.Clear();
         AfficherTexteCentre("██████╗ ██╗  ██╗████████╗ ██╗  ██╗ █████╗ ███╗  ██╗");
         AfficherTexteCentre("██╔══██╗╚██╗ ██╔╝╚══██╔══╝██║  ██║██╔══██╗████╗ ██║");
@@ -431,6 +433,7 @@ et changer la configuration du jeu (taille et couleurs)");
         {
             MARGE_HAUT = 0;
         }
+        Console.ForegroundColor = COULEUR_BORD;
 
         // Ligne haut
         Console.SetCursorPosition(MARGE_GAUCHE, MARGE_HAUT);
@@ -499,6 +502,7 @@ et changer la configuration du jeu (taille et couleurs)");
 
         if (caseDeTete)
         {
+            Console.ForegroundColor = COULEUR_TETE_SERPENT;
             switch (direction)
             {
                 case Directions.Haut:
@@ -515,6 +519,11 @@ et changer la configuration du jeu (taille et couleurs)");
                     dessin = DESSIN_TETE_GAUCHE;
                     break;
             }
+        }
+
+        else
+        {
+            Console.ForegroundColor = COULEUR_SERPENT;
         }
 
 
@@ -538,7 +547,8 @@ et changer la configuration du jeu (taille et couleurs)");
         // MATIERE A UTILISER
         // - affichage à la Console
         // - positionnement du curseur de la console
-
+        Console.ForegroundColor = COULEUR_GATEAU;
+        
         string gateau_dessin = GATEAU_DESSIN;
         int colonne = caseADessiner.x * 2 + 1 + MARGE_GAUCHE;
         int ligne = caseADessiner.y + 1 + MARGE_HAUT;
