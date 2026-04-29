@@ -29,11 +29,13 @@ public partial class Snake
         // MATIERE A UTILISER
         // - mettre la culture à fr-BE
         CultureInfo.CurrentCulture = new CultureInfo("fr-BE");
+        ChargerConfigurationParDefaut();
+
         Console.BackgroundColor = COULEUR_FOND;
         Console.ForegroundColor = COULEUR_SERPENT;
 
+        Console.Clear();
         Console.CursorVisible = false;
-        ChargerConfigurationParDefaut();
         CreerDB(out string messageErreur);
         Partie partie = new();
         return partie;
