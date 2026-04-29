@@ -54,7 +54,7 @@ public partial class Snake
 
         COULEUR_GATEAU = ConsoleColor.White;
         COULEUR_SERPENT = ConsoleColor.White;
-        COULEUR_BORDURE = ConsoleColor.White;
+        COULEUR_BORD = ConsoleColor.White;
         COULEUR_FOND = ConsoleColor.Black;
 
         CalculerParametres();
@@ -92,5 +92,104 @@ public partial class Snake
         // - lecture des lignes du fichier 
         // - découpage d'une ligne pour extraire la clé et la valeur
         // - switch
+        ChargerConfigurationParDefaut();
+
+        try
+
+        {
+            //s'arrete si le fichier n'existe pas
+            if (!File.Exists(nomFichier))
+            {
+                return;
+            }
+
+
+
+            string[] lignes = File.ReadAllLines(nomFichier);
+
+
+            foreach (string ligne in lignes)
+            {
+                //si une ligne est vide ou ne contient pas de "=" on l'ignore avec le continue
+                if (string.IsNullOrWhiteSpace(ligne) || !ligne.Contains("="))
+                {
+                    continue;
+                }
+
+
+
+                string[] partie = ligne.Split('=');
+                if (partie.Length < 2)//si il y'a moins de 2 valeurs on ignore la ligne
+                {
+                    continue;
+
+                }
+
+                string cle = partie[0].Trim().ToUpper();
+                string valeur = partie[1].Trim();
+
+                switch (cle)
+                {
+                    //si les conversion échouent les valeurs par défaut sont utilisée
+                    //on appelle ChargerConfigurationDefaut() au début
+                    case "LARGEUR_JEU":
+
+                        if (int.TryParse(valeur, out int l))
+                        {
+                            LARGEUR_TERRAIN = l;
+                        }
+
+                        break;
+
+                    case "HAUTEUR_JEU":
+                        if (int.TryParse(valeur, out int h))
+                        {
+                            HAUTEUR_TERRAIN = h;
+                        }
+                        break;
+
+                    case "GATEAUX":
+                        if (!string.IsNullOrEmpty(valeur))
+                        {
+                            GATEAU_DESSIN = valeur[0].ToString() + " ";
+                        }
+
+                        break;
+
+                    //renvoie les couleurs par défaut
+                    //si la conversion a échoué
+                    case "COULEUR_SERPENT":
+                        COULEUR_SERPENT = ConvertirCouleur(valeur, COULEUR_SERPENT);
+                        break;
+
+                    case "COULEUR_GATEAU":
+                        COULEUR_GATEAU = ConvertirCouleur(valeur, COULEUR_GATEAU);
+                        break;
+                    case "COULEUR_TITRE":
+                        COULEUR_TITRE = ConvertirCouleur(valeur, COULEUR_TITRE);
+                        break;
+
+                    case "COULEUR_TETE_SERPENT":
+                        COULEUR_TETE_SERPENT = ConvertirCouleur(valeur, COULEUR_TETE_SERPENT);
+                        break;
+
+                    case "COULEUR_BORD":
+                        COULEUR_BORD = ConvertirCouleur(valeur, COULEUR_BORD);
+                        break;
+
+                    case "COULEUR_FOND":
+                        COULEUR_FOND = ConvertirCouleur(valeur, COULEUR_FOND);
+                        break;
+                }
+
+            }
+
+            CalculerParametres();
+
+        }
+        catch (Exception)
+        {
+
+        }
     }
 }
