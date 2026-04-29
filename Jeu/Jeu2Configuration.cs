@@ -56,6 +56,8 @@ public partial class Snake
         COULEUR_SERPENT = ConsoleColor.White;
         COULEUR_BORD = ConsoleColor.White;
         COULEUR_FOND = ConsoleColor.Black;
+        COULEUR_TITRE = ConsoleColor.White;
+        COULEUR_TETE_SERPENT = ConsoleColor.White;
 
         CalculerParametres();
 
