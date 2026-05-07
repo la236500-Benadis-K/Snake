@@ -244,8 +244,8 @@ et changer la configuration du jeu (taille et couleurs)");
         EffacerEtAfficherGrandTitre();
         AfficherTexteCentre("Configurations");
         AfficherTexteCentre("1. Noir et blanc".PadRight(16));
-        AfficherTexteCentre("2. Rouge".PadRight(16));
-        AfficherTexteCentre("");
+        AfficherTexteCentre("2. Cyan".PadRight(16));
+        AfficherTexteCentre("3. Grille plus petite".PadRight(16));
         AfficherTexteCentre("");
         Console.WriteLine();
 
@@ -263,6 +263,12 @@ et changer la configuration du jeu (taille et couleurs)");
                 break;
             case ConsoleKey.D2:
                 LireConfiguration("Config/exemple.config");
+                Console.BackgroundColor = COULEUR_FOND;
+                Console.ForegroundColor = COULEUR_SERPENT;
+                Console.Clear();
+                break;
+            case ConsoleKey.D3:
+                LireConfiguration("Config/grillePetite.config");
                 Console.BackgroundColor = COULEUR_FOND;
                 Console.ForegroundColor = COULEUR_SERPENT;
                 Console.Clear();
@@ -358,8 +364,20 @@ et changer la configuration du jeu (taille et couleurs)");
         bool saisieValide = false;
 
         const string MESSAGE = "Pseudo (3 à 20 lettres) ou ENTER pour rester anonyme: ";
+        // pour positioner le texte à l'écran
+        // en fonction de la largeur de l'écran 
         int posX = (LARGEUR_ECRAN / 2) - (MESSAGE.Length / 2);
+        if (posX < 0)
+        {
+            posX = 0;
+        }
+
+
         int posY = HAUTEUR_ECRAN + 3;
+        if (posY >= Console.BufferHeight)
+        {
+            posY = Console.BufferHeight - 1;
+        }
 
         do
         {
@@ -548,7 +566,7 @@ et changer la configuration du jeu (taille et couleurs)");
         // - affichage à la Console
         // - positionnement du curseur de la console
         Console.ForegroundColor = COULEUR_GATEAU;
-        
+
         string gateau_dessin = GATEAU_DESSIN;
         int colonne = caseADessiner.x * 2 + 1 + MARGE_GAUCHE;
         int ligne = caseADessiner.y + 1 + MARGE_HAUT;
