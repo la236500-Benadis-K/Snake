@@ -40,9 +40,9 @@ public class TestConfiguration
     [TestMethod]
     public void CalculerParametresLargeur()
     {
-        Snake.LARGEUR_TERRAIN = 40;
+        Snake.LARGEUR_TERRAIN = 30;
         Snake.CalculerParametres();
-        Assert.AreEqual(80, Snake.LARGEUR_ECRAN);
+        Assert.AreEqual(60, Snake.LARGEUR_ECRAN);
     }
 
     [TestMethod]
@@ -59,7 +59,7 @@ public class TestConfiguration
     [TestMethod]
     public void ChargerConfigurationParDefautOK()
     {
-        
+
         Snake.LARGEUR_TERRAIN = 10;
         Snake.HAUTEUR_TERRAIN = 5;
         Snake.COULEUR_FOND = ConsoleColor.Red;
@@ -67,10 +67,128 @@ public class TestConfiguration
         // Remet les valeurs par défaut
         Snake.ChargerConfigurationParDefaut();
 
-        
+
         Assert.AreEqual(30, Snake.LARGEUR_TERRAIN);
         Assert.AreEqual(20, Snake.HAUTEUR_TERRAIN);
         Assert.AreEqual(ConsoleColor.Black, Snake.COULEUR_FOND);
         Assert.AreEqual(60, Snake.LARGEUR_ECRAN);
     }
+
+    /*****************************************************
+         Test LireConfiguration()
+    *****************************************************/
+
+
+
+    [TestInitialize]
+    public void Setup()
+    {
+        Snake.ChargerConfigurationParDefaut();
+    }
+
+    /// <summary>
+    /// Test que les configurations sont corrects 
+    /// </summary>
+    [TestMethod]
+    public void TestConfigOK()
+    {
+
+        //Arrange
+        string chemin = "../../../Config/configurationOK.config";
+
+        //Act
+        Snake.LireConfiguration(chemin);
+
+        //Assert
+        Assert.AreEqual(29, Snake.LARGEUR_TERRAIN);
+        Assert.AreEqual(19, Snake.HAUTEUR_TERRAIN);
+        Assert.AreEqual(ConsoleColor.DarkRed, Snake.COULEUR_SERPENT);
+        Assert.AreEqual(ConsoleColor.Yellow, Snake.COULEUR_TETE_SERPENT);
+        Assert.AreEqual("✪ ", Snake.GATEAU_DESSIN);
+    }
+
+    /// <summary>
+    /// La largeur est remise par défaut  
+    /// car elle dépasse la limite défini dans calculerParametre()
+    /// ConvertirCouleur échoue et garde la couleur par défaut
+    /// </summary>
+    [TestMethod]
+    public void TestConfigErreursValeurs()
+    {
+
+        //Arrange
+        string chemin = "../../../Config/configurationErreursValeurs.config";
+
+        //Act
+        Snake.LireConfiguration(chemin);
+
+        //Assert
+        Assert.AreEqual(30, Snake.LARGEUR_TERRAIN);
+        Assert.AreEqual(ConsoleColor.White, Snake.COULEUR_SERPENT);
+        Assert.AreEqual(ConsoleColor.White, Snake.COULEUR_GATEAU);
+    }
+
+    /// <summary>
+    /// La largeur est remise par défaut  
+    /// car elle dépasse la limite défini dans calculerParametre()
+    /// </summary>
+    [TestMethod]
+    public void TestConfigErreursCles()
+    {
+        //Arrange
+        string chemin = "../../../Config/configurationErreursCles.config";
+
+        //Act
+        Snake.LireConfiguration(chemin);
+
+        //Assert
+        Assert.AreEqual(30, Snake.LARGEUR_TERRAIN); // largeur remise à 30
+        Assert.AreEqual(ConsoleColor.White, Snake.COULEUR_SERPENT);
+        Assert.AreEqual(ConsoleColor.Black, Snake.COULEUR_FOND);
+    }
+
+    /// <summary>
+    /// La hauteur est remise par défaut  
+    /// car al ligne est ignorée dans le fichier
+    /// </summary>
+    [TestMethod]
+    public void TestLireConfigurationLignesIncorrecte()
+    {
+        //Arrange
+        string chemin = "../../../Config/configurationLigneVideOuIncorrecte.config";
+        Snake.ChargerConfigurationParDefaut();
+
+        //Act
+        Snake.LireConfiguration(chemin);
+
+
+        //Assert
+        Assert.AreEqual(29, Snake.LARGEUR_TERRAIN);
+        Assert.AreEqual(Snake.HAUTEUR_TERRAIN, Snake.HAUTEUR_TERRAIN);
+        Assert.AreEqual(ConsoleColor.DarkRed, Snake.COULEUR_SERPENT);
+    }
+
+
+    /// <summary>
+    /// Vérifie que la fonction LireConfiguration() utilise la configuration par défaut 
+    /// quand un fichier inexistant est donné
+    /// </summary>
+
+    [TestMethod]
+    public void TestLireConfigurationFichierInexistant()
+    {
+
+        // Arrange
+        Snake.ChargerConfigurationParDefaut();
+        int largeurAttendue = Snake.LARGEUR_TERRAIN;
+        string fichierInexistant = "../../../Config/fichierInexistant.config";
+
+        // Act
+        Snake.LireConfiguration(fichierInexistant);
+
+        //Assert
+        Assert.AreEqual(largeurAttendue, Snake.LARGEUR_TERRAIN);
+    }
+
+
 }
