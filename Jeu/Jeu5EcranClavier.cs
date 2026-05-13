@@ -250,18 +250,24 @@ On peut également visualiser les meilleurs scores et changer la configuration d
         // - lecture de touches du clavier de la Console
         // - switch
 
+        /****************************************************************** 
+            une fois que l'utilisateur enfonce une touche 
+            les modifications s'appliquent et le switch sert 
+            à exécuter le fichier en fonction de la touche qui y correspond
+        *******************************************************************/
+
         EffacerEtAfficherGrandTitre();
         AfficherTexteCentre("Configurations");
-        AfficherTexteCentre("1. Noir et blanc".PadRight(16));
-        AfficherTexteCentre("2. Cyan".PadRight(16));
-        AfficherTexteCentre("3. Grille plus petite".PadRight(16));
-        AfficherTexteCentre("");
+        Console.WriteLine();
+        AfficherTexteCentre("1. Noir et blanc".PadRight(21));
+        AfficherTexteCentre("2. Cyan".PadRight(21));
+        AfficherTexteCentre("3. Grille plus petite".PadRight(21));
         Console.WriteLine();
 
-        // 4. On attend que l'utilisateur appuie sur une touche
+       
         ConsoleKeyInfo touche = Console.ReadKey(true);
 
-        // 5. On agit selon la touche pressée
+        
         switch (touche.Key)
         {
             case ConsoleKey.D1:
