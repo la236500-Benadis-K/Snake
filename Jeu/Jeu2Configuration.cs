@@ -158,7 +158,14 @@ public partial class Snake
                     case "GATEAUX":
                         if (!string.IsNullOrEmpty(valeur))
                         {
-                            GATEAU_DESSIN = valeur[0].ToString() + " ";
+                            LISTE_GATEAUX.Clear();
+                            foreach (char c in valeur)
+                            {
+                                
+                                LISTE_GATEAUX.Add(c.ToString() + " ");
+                            }
+                            
+                            GATEAU_DESSIN = LISTE_GATEAUX[0];
                         }
 
                         break;
