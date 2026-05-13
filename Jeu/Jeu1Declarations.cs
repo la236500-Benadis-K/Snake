@@ -169,6 +169,7 @@ public partial class Snake
     // Exemple: ⬤
     // A COMPLETER
     public static string GATEAU_DESSIN = "⬤ ";
+    public static List<string> LISTE_GATEAUX = new List<string>();
 
     // Couleurs du jeu
     // A COMPLETER
