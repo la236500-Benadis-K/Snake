@@ -65,6 +65,13 @@ public partial class Snake
 
             partie.PositionGateau.y = Random.Shared.Next(0, HAUTEUR_TERRAIN);
         } while (VerifierCasePasVide(partie.Serpent, partie.PositionGateau, true));
+
+        if (LISTE_GATEAUX.Count > 0)
+        {
+            int indexAleatoire = Random.Shared.Next(0, LISTE_GATEAUX.Count);
+
+            GATEAU_DESSIN = LISTE_GATEAUX[indexAleatoire];
+        }
     }
 
     /// <summary>
