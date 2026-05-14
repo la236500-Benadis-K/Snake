@@ -111,6 +111,11 @@ public partial class Snake
         public bool PartieEnCours;
     }
 
+    //Indique que le splash screen s'est déjà affiché
+    //Pour ne pas l'afficher à chaque retour au menu principal
+    private static bool _splashScreenDejaAffiche = false;
+
+
     // ********************************************* //
     // *************** CONSTANTES ****************** //
     // ********************************************* //
