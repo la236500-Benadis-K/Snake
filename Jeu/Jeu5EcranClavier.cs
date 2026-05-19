@@ -438,6 +438,9 @@ On peut également visualiser les meilleurs scores et changer la configuration d
         AfficherTexteCentre("██    ██ ██   ██ ██  ██  ██ ██          ██    ██  ██  ██  ██      ██   ██ ");
         AfficherTexteCentre(" ██████  ██   ██ ██      ██ ███████      ██████    ████   ███████ ██   ██ ");
 
+        TimeSpan duree = DateTime.Now - partie.TempsPartie;
+        Console.WriteLine();
+        AfficherTexteCentre($"Vous avez effectué un score de {partie.Score} en {(int)duree.TotalSeconds} secondes !");
 
         string pseudo;
         bool saisieValide = false;
@@ -498,7 +501,7 @@ On peut également visualiser les meilleurs scores et changer la configuration d
         TimeSpan temps = DateTime.Now - partie.TempsPartie;
         string duree = $"Durée : {temps.Seconds:D2}";
 
-        
+
         string texte = score.PadRight(LARGEUR_ECRAN / 3)
                      + vitesse.PadRight(LARGEUR_ECRAN / 3)
                      + duree.PadRight(LARGEUR_ECRAN / 3);
