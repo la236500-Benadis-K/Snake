@@ -58,7 +58,8 @@ public partial class Snake
         Console.ForegroundColor = COULEUR_TITRE;
 
         Console.Clear();
-        AfficherTexteCentre("██████╗ ██╗  ██╗████████╗ ██╗  ██╗ █████╗ ███╗  ██╗");
+        Console.WriteLine();
+        AfficherTexteCentre("██████╗ ██╗   ██╗████████╗██╗  ██╗ █████╗ ███╗  ██╗");
         AfficherTexteCentre("██╔══██╗╚██╗ ██╔╝╚══██╔══╝██║  ██║██╔══██╗████╗ ██║");
         AfficherTexteCentre("██████╔╝ ╚████╔╝    ██║   ███████║██║  ██║██╔██╗██║");
         AfficherTexteCentre("██╔═══╝   ╚██╔╝     ██║   ██╔══██║██║  ██║██║╚████║");
@@ -85,6 +86,67 @@ public partial class Snake
         // BONUS POSSIBLES
         // - affichage d'un écran d'accueil animé
         // - ambiance sonore
+
+        
+        
+        Partie partie = InitialiserJeu();
+        LireConfiguration("./Config/grillePetite.config");
+        InitialiserPartie(ref partie);
+        EffacerEtAfficherGrandTitre();
+
+
+
+
+        string message = "Appuyez sur une touche pour commencer...";
+        int posX = (LARGEUR_ECRAN / 2) - (message.Length / 2);
+        if (posX < 0) posX = 0;
+
+
+
+
+        int posY = Console.CursorTop + 2;
+
+
+
+        bool texteVisible = true;
+
+
+
+        // le texte alterne entre le magenta et le noir
+        // qui donne l'illusion que le texte clignotte
+
+        while (!Console.KeyAvailable)
+
+        {
+
+            Console.SetCursorPosition(posX, posY);
+
+
+
+            // quand le texteVisible est à true le texte est en magenta
+            // quand il est à false il est en noir
+            Console.ForegroundColor = texteVisible ? COULEUR_SERPENT : COULEUR_FOND;
+
+            AfficherTexteCentre(message);
+
+
+
+            texteVisible = !texteVisible;
+
+            System.Threading.Thread.Sleep(400); 
+
+        }
+
+
+
+
+        Console.ReadKey(true);
+
+
+
+        ChargerConfigurationParDefaut();
+
+        Console.Clear();
     }
 
     /// <summary>
@@ -132,7 +194,11 @@ public partial class Snake
         // - affichage à la Console
         // - lecture de touches du clavier de la Console
         // - switch
-
+        if (!_splashScreenDejaAffiche)
+        {
+            SplashScreen();
+            _splashScreenDejaAffiche = true;
+        }
 
         do
         {
@@ -264,10 +330,10 @@ On peut également visualiser les meilleurs scores et changer la configuration d
         AfficherTexteCentre("3. Grille plus petite".PadRight(21));
         Console.WriteLine();
 
-       
+
         ConsoleKeyInfo touche = Console.ReadKey(true);
 
-        
+
         switch (touche.Key)
         {
             case ConsoleKey.D1:
