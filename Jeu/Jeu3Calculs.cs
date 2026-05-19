@@ -99,6 +99,7 @@ public partial class Snake
 
         partie.Vitesse = VITESSE_MIN;
         partie.Score = 0;
+        partie.TempsPartie = DateTime.Now;
         partie.PartieEnCours = true;
         partie.EnleverQueue = false;
 
