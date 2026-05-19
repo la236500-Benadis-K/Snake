@@ -87,8 +87,6 @@ public partial class Snake
         // - affichage d'un écran d'accueil animé
         // - ambiance sonore
 
-        
-        
         Partie partie = InitialiserJeu();
         LireConfiguration("./Config/grillePetite.config");
         InitialiserPartie(ref partie);
@@ -133,7 +131,7 @@ public partial class Snake
 
             texteVisible = !texteVisible;
 
-            System.Threading.Thread.Sleep(400); 
+            Thread.Sleep(400);
 
         }
 
@@ -494,12 +492,18 @@ On peut également visualiser les meilleurs scores et changer la configuration d
     /// <param name="largeurMargeGauche">largeur de la marge de gauche de l'affichage (décalage pour centrer)</param>
     public static void AfficherScoreCourant(Partie partie, int largeurMargeGauche)
     {
-        // A COMPLETER
+        string score = $"Score : {partie.Score}";
+        string vitesse = $"Vitesse : {partie.Vitesse}";
+        string duree = $"Durée : {partie.TempsPartie}";
 
-        // MATIERE A UTILISER
-        // - affichage à la Console
-        // - positionnement du curseur de la console
-        // - manipulation de chaînes de caractères (padding...)
+        
+        string texte = score.PadRight(LARGEUR_ECRAN / 3)
+                     + vitesse.PadRight(LARGEUR_ECRAN / 3)
+                     + duree.PadRight(LARGEUR_ECRAN / 3);
+
+
+        Console.SetCursorPosition(largeurMargeGauche, MARGE_HAUT - 1);
+        Console.Write(texte);
     }
 
     /// <summary>
@@ -572,7 +576,7 @@ On peut également visualiser les meilleurs scores et changer la configuration d
 
 
         DessinerGateau(partie.PositionGateau);
-
+        AfficherScoreCourant(partie, MARGE_GAUCHE);
 
     }
 
@@ -715,6 +719,8 @@ On peut également visualiser les meilleurs scores et changer la configuration d
         {
             DessinerGateau(partie.PositionGateau);// il a mangé donc on re dessine un gateau
         }
+        AfficherScoreCourant(partie, MARGE_GAUCHE);
+
     }
 
     /// <summary>
