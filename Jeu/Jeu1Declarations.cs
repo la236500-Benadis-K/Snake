@@ -94,7 +94,7 @@ public partial class Snake
 
         // Mesure du temps de la partie
         // A COMPLETER
-        public int TempsPartie;
+        public DateTime TempsPartie;
 
         // Mesure du temps de calcul pour l'affichage
         // A COMPLETER
