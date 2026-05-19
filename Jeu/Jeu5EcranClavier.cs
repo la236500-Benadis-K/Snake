@@ -494,7 +494,9 @@ On peut également visualiser les meilleurs scores et changer la configuration d
     {
         string score = $"Score : {partie.Score}";
         string vitesse = $"Vitesse : {partie.Vitesse}";
-        string duree = $"Durée : {partie.TempsPartie}";
+
+        TimeSpan temps = DateTime.Now - partie.TempsPartie;
+        string duree = $"Durée : {temps.Seconds:D2}";
 
         
         string texte = score.PadRight(LARGEUR_ECRAN / 3)
