@@ -59,13 +59,20 @@ public partial class Snake
         // MATIERE A UTILISER
         // - nombres aléatoires
         // - initialiser une Structure CaseDeJeu
+
+
+        // On génère des coordonnées aléatoires 
+        // jusqu'à trouver une case qui n'est pas occupée par le serpent
         do
         {
             partie.PositionGateau.x = Random.Shared.Next(0, LARGEUR_TERRAIN);
 
             partie.PositionGateau.y = Random.Shared.Next(0, HAUTEUR_TERRAIN);
+
         } while (VerifierCasePasVide(partie.Serpent, partie.PositionGateau, true));
 
+        // Si la liste des gateaux n'est pas vide
+        //  on en sélectionne un au hasard
         if (LISTE_GATEAUX.Count > 0)
         {
             int indexAleatoire = Random.Shared.Next(0, LISTE_GATEAUX.Count);
@@ -109,27 +116,27 @@ public partial class Snake
 
         switch (partie.DirectionSerpent)
         {
+            // Le serpent est placé sur le bord opposé à sa direction
+            // Il est initialisé avec 3 case : la tête et deux anneaux pour le corps
             case Directions.Haut:
-                //on tire une position au hasard sur la largeur du terrain
                 int x = Random.Shared.Next(0, LARGEUR_TERRAIN);
 
-                //on initialise une nouvelle liste pour définir la case des anneaux et de la tête
                 partie.Serpent = new List<CaseDeJeu>();
-
                 partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 3)); //la tête
-                partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 2));
-                partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 1)); //si le serpent va en haut on commence 
-                                                                           // par le bas et on colle le corps au bord
+                partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 2)); //Corps
+                partie.Serpent.Add(new CaseDeJeu(x, HAUTEUR_TERRAIN - 1)); //queue collée au bord opposé
                 break;
+
             case Directions.Bas:
                 x = Random.Shared.Next(0, LARGEUR_TERRAIN);
+
                 partie.Serpent = new List<CaseDeJeu>();
                 partie.Serpent.Add(new CaseDeJeu(x, 2));
                 partie.Serpent.Add(new CaseDeJeu(x, 1));
                 partie.Serpent.Add(new CaseDeJeu(x, 0));
                 break;
+
             case Directions.Droite:
-                //on tire une position au hasard sur la hauteur du terrain
                 int y = Random.Shared.Next(0, HAUTEUR_TERRAIN);
 
 
@@ -138,15 +145,16 @@ public partial class Snake
                 partie.Serpent.Add(new CaseDeJeu(1, y));
                 partie.Serpent.Add(new CaseDeJeu(0, y));
                 break;
+
             case Directions.Gauche:
                 y = Random.Shared.Next(0, HAUTEUR_TERRAIN);
+
                 partie.Serpent = new List<CaseDeJeu>();
                 partie.Serpent.Add(new CaseDeJeu(LARGEUR_TERRAIN - 3, y));
                 partie.Serpent.Add(new CaseDeJeu(LARGEUR_TERRAIN - 2, y));
                 partie.Serpent.Add(new CaseDeJeu(LARGEUR_TERRAIN - 1, y));
                 break;
         }
-
 
         AjouterGateau(ref partie);
     }
@@ -174,12 +182,14 @@ public partial class Snake
                     return ancienneDirection;
                 }
                 break;
+
             case Directions.Bas:
                 if (nouvelleDirection == Directions.Haut)
                 {
                     return ancienneDirection;
                 }
                 break;
+
             case Directions.Droite:
                 if (nouvelleDirection == Directions.Gauche)
                 {
@@ -221,7 +231,7 @@ public partial class Snake
 
         if (testerLaQueue)
         {
-            // pour tester toute la liste avec la queue pour voir si le serpend se mord quand il avance 
+            // test toute la liste avec la queue pour voir si le serpend se mord quand il avance 
             limite = casesOccupees.Count;
         }
         else
@@ -285,7 +295,7 @@ public partial class Snake
                 nouvelleTete.y = partie.Serpent[0].y;
                 break;
             case Directions.Gauche:
-                nouvelleTete.x = partie.Serpent[0].x - 1;// on recule d'une colonne 
+                nouvelleTete.x = partie.Serpent[0].x - 1;// on décalle d'une colonne vers la gauche
                 nouvelleTete.y = partie.Serpent[0].y;
                 break;
         }
@@ -305,14 +315,14 @@ public partial class Snake
             return;
         }
 
-
+        //mémorise la position actuelle de la queue
         partie.EffacerQueue = partie.Serpent[partie.Serpent.Count - 1];
 
         // si le serpent mange un gateau
         if (nouvelleTete.x == partie.PositionGateau.x && nouvelleTete.y == partie.PositionGateau.y)
         {
             partie.Serpent.Insert(0, nouvelleTete);// on ajoute une nouvelle tête à l'index 0
-            partie.Score++;//on incrémente le score 
+            partie.Score++;
             partie.Vitesse = VITESSE_MIN;
             AjouterGateau(ref partie);
             partie.EnleverQueue = false;
