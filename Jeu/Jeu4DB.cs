@@ -32,22 +32,25 @@ public partial class Snake
         // MATIERE A UTILISER
         // - parcours des chaînes de caractères
 
-        //vérifie que le pseudo n'est pas null
+        
+
+        //si le pseudo est null on renvoie false
         if (pseudoAVerifier == null)
         {
             return false;
         }
 
-        //si le pseudo ne contient pas entre 3 et 20 caractère on return false
+        //si le pseudo ne respecre pas les longueur imposée on renvoie false
         if (pseudoAVerifier.Length < LONGUEUR_MIN_PSEUDO || pseudoAVerifier.Length > LONGUEUR_MAX_PSEUDO)
         {
             return false;
         }
 
-
+        //véfie chaque caractère du pseudo
+        //si il contient autre chose qu'une lettre un un trait d'union
+        //on renvoie false
         foreach (char c in pseudoAVerifier)
         {
-            //si le caractère n'est pas une lettre ou un trait d'union on return false
             if (!char.IsLetter(c) && c != '-')
             {
 
@@ -76,18 +79,24 @@ public partial class Snake
         // - gestion d'erreur
         // - out
 
+    
         try
         {
+            //on se connecte juste au serveur au cas où la DB n'existe pas encore
             string connSansDB = $"Server=localhost;Uid=root;Pwd=;";
+
             using (MySqlConnection connexion = new MySqlConnection(connSansDB))
             {
                 connexion.Open();
+
                 string query = $@"DROP DATABASE IF EXISTS {DBNAME};";
+
                 using (MySqlCommand cmd = new MySqlCommand(query, connexion))
                 {
                     cmd.ExecuteNonQuery();
                 }
             }
+
             messageDerreur = "Base de données effacée avec succès.";
             return true;
         }
@@ -113,13 +122,22 @@ public partial class Snake
         // - gestion d'erreur
         // - out
 
+        /************************************************************
+           la fonction se connecte au serveur avec connSansDB
+           ensuite elle crée la DB avec creerDB si elle n'existe pas.
+           on crée également les tables si elle n'existent pas avec
+        ************************************************************/
+
         try
         {
-            // Connexion SANS DB pour créer la DB
+            //se connecte au serveur au cas où la DB n'existe pas encore
             string connSansDB = $"Server=localhost;Uid=root;Pwd=;";
+
             using (MySqlConnection connexion = new MySqlConnection(connSansDB))
             {
                 connexion.Open();
+
+
                 string creerDB = $"CREATE DATABASE IF NOT EXISTS {DBNAME};";
                 using (MySqlCommand cmd = new MySqlCommand(creerDB, connexion))
                 {
@@ -131,18 +149,18 @@ public partial class Snake
             {
                 connexion.Open();
 
-                // Le @ devant les guillemets permet d'écrire sur plusieurs lignes en C#, c'est plus propre !
+                // on crée les tables si elles n'existent pas
                 string requette = @"
                     CREATE TABLE IF NOT EXISTS Joueur (
                         Id_joueur INT AUTO_INCREMENT PRIMARY KEY,
-                        Pseudo VARCHAR(20) NOT NULL UNIQUE
+                        Pseudo VARCHAR(20) NOT NULL
                     );
 
                     CREATE TABLE IF NOT EXISTS Score (
                         Id_score INT AUTO_INCREMENT PRIMARY KEY,
                         Id_joueur INT NOT NULL,
                         Points INT NOT NULL,
-                        CONSTRAINT fk_score_joueur FOREIGN KEY (Id_joueur) REFERENCES Joueur(Id_joueur) ON DELETE CASCADE
+                        FOREIGN KEY (Id_joueur) REFERENCES Joueur(Id_joueur) ON DELETE CASCADE
                     );";
 
                 using (MySqlCommand cmd = new MySqlCommand(requette, connexion))
@@ -183,6 +201,7 @@ public partial class Snake
         {
             commande.Parameters.AddWithValue("@pseudo", pseudo);
 
+            //commande.ExecuteScalar() renvoie null si aucun résultat n'est trouvé
             object resultat = commande.ExecuteScalar();
 
             if (resultat == null)
@@ -302,27 +321,23 @@ public partial class Snake
             {
                 connexion.Open();
 
-                //regarde si le joueur existe déjà
+                //on vérifie qu'un joueur existe dans la DB
+                //et s'il n'existe pas on l'ajoute avant d'ajouter le score
                 int idJoueur = LireIDJoueur(connexion, pseudo);
 
-                //si le joueur n'existe pas on le crée
                 if (idJoueur == -1)
                 {
 
-                    connexion.Close();
-
-                    //si l'ajout du joueur ne fonctionne pas on return false
                     if (!AjouterJoueur(pseudo, out messageDerreur))
                     {
                         return false;
                     }
 
-                    // on récupère l'id du joueur
-                    connexion.Open();
+                    //on récupère l'id du joueur
                     idJoueur = LireIDJoueur(connexion, pseudo);
                 }
 
-                // on ajoute le score dans la table Score
+                //on insert le score dans la base de donnée
                 string requete = "INSERT INTO Score (Id_joueur, Points) VALUES (@idJoueur, @points)";
 
                 using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
@@ -368,6 +383,7 @@ public partial class Snake
             {
                 connexion.Open();
 
+                //on récupère les meilleurs scores trié par ordre décroissant
                 string requete = @"SELECT J.Pseudo, S.Points 
                                FROM Score S
                                JOIN Joueur J ON S.Id_joueur = J.Id_joueur
@@ -380,6 +396,7 @@ public partial class Snake
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
+                        //on parcours les résultats et on ajoute dans la liste
                         while (reader.Read())
                         {
                             ScorePartie score = new ScorePartie();
