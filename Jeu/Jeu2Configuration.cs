@@ -14,7 +14,7 @@ public partial class Snake
     public static ConsoleColor ConvertirCouleur(string chaine, ConsoleColor defaut)
     {
         // A COMPLETER
-
+        //si la conversion échoue on return la couleur par défaut
         if (Enum.TryParse(chaine, true, out ConsoleColor couleur))
         {
             return couleur;
@@ -31,9 +31,11 @@ public partial class Snake
     public static void CalculerParametres()
     {
         // A COMPLETER
+
+        //on bloque la largeur et la hauteur si elles dépassent une taille de 30
         if (LARGEUR_TERRAIN > 30)
         {
-            LARGEUR_TERRAIN = 30;
+            LARGEUR_TERRAIN = 30; 
         }
 
         if (HAUTEUR_TERRAIN > 30)
@@ -109,7 +111,7 @@ public partial class Snake
         try
 
         {
-            //s'arrete si le fichier n'existe pas
+            //si le fichier n'existe pass on utilise les valeurs par défaut
             if (!File.Exists(nomFichier))
             {
                 return;
@@ -138,7 +140,7 @@ public partial class Snake
                 switch (cle)
                 {
                     //si les conversion échouent les valeurs par défaut sont utilisée
-                    //on appelle ChargerConfigurationDefaut() au début
+                    // car on appelle ChargerConfigurationDefaut() au début
                     case "LARGEUR_JEU":
 
                         if (int.TryParse(valeur, out int l))
@@ -170,8 +172,6 @@ public partial class Snake
 
                         break;
 
-                    //renvoie les couleurs par défaut
-                    //si la conversion a échoué
                     case "COULEUR_SERPENT":
                         COULEUR_SERPENT = ConvertirCouleur(valeur, COULEUR_SERPENT);
                         break;
