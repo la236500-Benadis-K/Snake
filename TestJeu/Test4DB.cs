@@ -34,6 +34,10 @@ public class TestDB
     /******************************************************
         TEST POUR CRÉER ET EFFACER LA DB
     ******************************************************/
+    
+    /// <summary>
+    /// sert à créer la DB
+    /// </summary>
     [TestMethod]
     public void CreerDBOK()
     {
@@ -44,6 +48,9 @@ public class TestDB
         Assert.IsTrue(true);
     }
 
+    /// <summary>
+    /// on rentre un nom de db invalide
+    /// </summary>
     [TestMethod]
     public void CreerDBErreur()
     {
@@ -58,6 +65,9 @@ public class TestDB
         Snake.DBNAME = DBNAME_TEST;
     }
 
+    /// <summary>
+    /// on essaye de créer la DB deux foix
+    /// </summary>
     [TestMethod]
     public void CreerDBDeuxFois()
     {
@@ -71,7 +81,9 @@ public class TestDB
     }
 
 
-
+/// <summary>
+/// on efface la DB
+/// </summary>
     [TestMethod]
     public void EffacerDBOK()
     {
@@ -83,6 +95,9 @@ public class TestDB
         Assert.IsTrue(resultat, messageDerreur);
     }
 
+    /// <summary>
+    /// on met un nom de DB invalide
+    /// </summary>
     [TestMethod]
     public void EffacerDBErreur()
     {
@@ -97,6 +112,9 @@ public class TestDB
         Snake.DBNAME = DBNAME_TEST;
     }
 
+    /// <summary>
+    /// on essaye d'effacer la DB deux fois
+    /// </summary>
     [TestMethod]
     public void EffacerDBDeuxFois()
     {
@@ -113,6 +131,10 @@ public class TestDB
         TEST POUR VERIFIER LE PSEUDO
     ******************************************************/
 
+    /// <summary>
+    /// sert à vérifier le pseudo
+    /// on met un pseudo null
+    /// </summary>
     [TestMethod]
     public void VerifierPseudoNull()
     {
@@ -126,6 +148,9 @@ public class TestDB
         Assert.IsFalse(resultat);
     }
 
+    /// <summary>
+    /// on met un pseudo trop court
+    /// </summary>
     [TestMethod]
     public void VerifierPseudoTropCourt()
     {
@@ -139,6 +164,9 @@ public class TestDB
         Assert.IsFalse(resultat);
     }
 
+    /// <summary>
+    /// on met un pseudo trop long
+    /// </summary>
     [TestMethod]
     public void VerifierPseudoTropLong()
     {
@@ -152,6 +180,10 @@ public class TestDB
         Assert.IsFalse(resultat);
     }
 
+    /// <summary>
+    /// on met un pseudo
+    /// avec un caractère invalide
+    /// </summary>
     [TestMethod]
     public void VerifierPseudoCaractereInvalide()
     {
@@ -165,6 +197,10 @@ public class TestDB
         Assert.IsFalse(resultat);
     }
 
+    /// <summary>
+    /// on met un pseudo
+    /// avec un espace
+    /// </summary>
     [TestMethod]
     public void VerifierPseudoEspace()
     {
@@ -178,6 +214,9 @@ public class TestDB
         Assert.IsFalse(resultat);
     }
 
+    /// <summary>
+    /// on met un pseudo avec un chiffre
+    /// </summary>
     [TestMethod]
     public void VerifierPseudoChiffre()
     {
@@ -191,6 +230,9 @@ public class TestDB
         Assert.IsFalse(resultat);
     }
 
+    /// <summary>
+    /// on met un pseudo valide
+    /// </summary>
     [TestMethod]
     public void VerifierPseudoValide()
     {
@@ -204,6 +246,9 @@ public class TestDB
         Assert.IsTrue(resultat);
     }
 
+    /// <summary>
+    /// on met un pseudo avec un trait d'union
+    /// </summary>
     [TestMethod]
     public void VerifierPseudoValideTraitUnion()
     {
@@ -221,6 +266,11 @@ public class TestDB
         TEST POUR AJOUTERJOUEUR()
     ******************************************************/
 
+    /// <summary>
+    /// sert à ajouter un joueur
+    /// on essaye d'ajouter un joueur
+    /// avec un pseudo invalide
+    /// </summary>
     [TestMethod]
     public void AjouterJoueurPseudoInvalide()
     {
@@ -232,6 +282,10 @@ public class TestDB
         Assert.IsFalse(resultat);
     }
 
+    /// <summary>
+    /// on ajoute un joueur
+    /// avec un pseudo valide
+    /// </summary>
     [TestMethod]
     public void AjouterJoueurOK()
     {
@@ -243,6 +297,9 @@ public class TestDB
         Assert.IsTrue(resultat, messageDerreur);
     }
 
+    /// <summary>
+    /// on essaye d'entrer un joueur déjà existent
+    /// </summary>
     [TestMethod]
     public void AjouterJoueurDejaExistant()
     {
@@ -255,6 +312,10 @@ public class TestDB
         Assert.IsFalse(resultat);
     }
 
+    /// <summary>
+    /// on essaye d'entrer un joueur
+    /// dans un db invalide
+    /// </summary>
     [TestMethod]
     public void AjouterJoueurErreurDB()
     {
@@ -271,6 +332,11 @@ public class TestDB
             TEST POUR AJOUTERSCORE()
     ******************************************************/
 
+    /// <summary>
+    /// sert à ajouter un score
+    /// on essaye d'ajouter un score
+    /// avec un pseudo invalide
+    /// </summary>
     [TestMethod]
     public void AjouterScorePseudoInvalide()
     {
@@ -282,6 +348,9 @@ public class TestDB
         Assert.IsFalse(resultat);
     }
 
+    /// <summary>
+    /// on rentre un joueur déjà existant
+    /// </summary>
     [TestMethod]
     public void AjouterScoreJoueurExistant()
     {
@@ -294,6 +363,9 @@ public class TestDB
         Assert.IsTrue(resultat, messageDerreur);
     }
 
+    /// <summary>
+    /// on enregistre un score pour un nouveau joueur
+    /// </summary>
     [TestMethod]
     public void AjouterScoreNouveauJoueur()
     {
@@ -305,6 +377,10 @@ public class TestDB
         Assert.IsTrue(resultat, messageDerreur);
     }
 
+    /// <summary>
+    /// on essaye d'enregistrer un score
+    /// dans une db invalide
+    /// </summary>
     [TestMethod]
     public void AjouterScoreErreurDB()
     {
@@ -321,6 +397,9 @@ public class TestDB
             TEST POUR LIRESCORES()
     ******************************************************/
 
+    /// <summary>
+    /// on met une liste vide
+    /// </summary>
     [TestMethod]
     public void LireScoresListeVide()
     {
@@ -333,6 +412,11 @@ public class TestDB
         Assert.AreEqual(0, scores.Count);
     }
 
+    /// <summary>
+    /// test lireScores
+    /// on vérifie que la liste de scores
+    /// n'est pas vide
+    /// </summary>
     [TestMethod]
     public void LireScoresAvecScores()
     {
@@ -347,6 +431,10 @@ public class TestDB
         Assert.AreEqual(2, scores.Count);
     }
 
+    /// <summary>
+    /// test pour lire les scores
+    /// on vérifie que la limite est respectée 
+    /// </summary>
     [TestMethod]
     public void LireScoresLimiteOK()
     {
@@ -362,6 +450,10 @@ public class TestDB
         Assert.AreEqual(2, scores.Count);
     }
 
+    /// <summary>
+    /// test pour lire les scores
+    /// on met un nom de DB invalide 
+    /// </summary>
     [TestMethod]
     public void LireScoresErreurDB()
     {
