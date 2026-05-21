@@ -168,7 +168,12 @@ public partial class Snake
         EffacerEtAfficherGrandTitre();
 
         Console.SetCursorPosition(0, Console.WindowHeight / 2);
-        AfficherTexteCentre("Au revoir !");
+        AfficherTexteCentre(" █████╗ ██╗   ██╗  ██████╗ ███████╗██╗   ██╗ █████╗ ██╗██████╗   ██╗");
+        AfficherTexteCentre("██╔══██╗██║   ██║  ██╔══██╗██╔════╝██║   ██║██╔══██╗██║██╔══██╗  ██║");
+        AfficherTexteCentre("███████║██║   ██║  ██████╔╝█████╗  ╚██╗ ██╔╝██║  ██║██║██████╔╝  ██║");
+        AfficherTexteCentre("██╔══██║██║   ██║  ██╔══██╗██╔══╝   ╚████╔╝ ██║  ██║██║██╔══██╗  ╚═╝");
+        AfficherTexteCentre("██║  ██║╚██████╔╝  ██║  ██║███████╗  ╚██╔╝  ╚█████╔╝██║██║  ██║  ██╗");
+        AfficherTexteCentre("╚═╝  ╚═╝ ╚═════╝   ╚═╝  ╚═╝╚══════╝   ╚═╝    ╚════╝ ╚═╝╚═╝  ╚═╝  ╚═╝");
     }
 
 
