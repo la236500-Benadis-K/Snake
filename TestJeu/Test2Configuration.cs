@@ -15,59 +15,98 @@ public class TestConfiguration
     [TestMethod]
     public void ConversionCouleurOK()
     {
+        //Act
         ConsoleColor couleur = Snake.ConvertirCouleur("Black", ConsoleColor.White);
+
+        //Assert
         Assert.AreEqual(ConsoleColor.Black, couleur);
     }
 
+    /// <summary>
+    /// Tests de conversion en couleur d'une chaîne invalide
+    /// </summary>
     [TestMethod]
     public void ConversionCouleurInvalide()
     {
+        //Act
         ConsoleColor couleur = Snake.ConvertirCouleur("nul", ConsoleColor.White);
+
+        //Arrange
         Assert.AreEqual(ConsoleColor.White, couleur);
     }
 
+    /// <summary>
+    /// Tests de conversion en couleur de casse
+    /// </summary>
     [TestMethod]
     public void ConversionCouleurCasse()
     {
+        //Act
         ConsoleColor couleur = Snake.ConvertirCouleur("black", ConsoleColor.White);
+
+        //Arrange
         Assert.AreEqual(ConsoleColor.Black, couleur);
     }
+
 
     /*****************************************************
         Test CalculerParametres()
     *****************************************************/
-
+    /// <summary>
+    /// calcul la largeur de l'écran
+    /// par rapport à la taille du terrain
+    /// </summary>
     [TestMethod]
     public void CalculerParametresLargeur()
     {
+        //Arrange
         Snake.LARGEUR_TERRAIN = 30;
+
+        //Act
         Snake.CalculerParametres();
+
+        //Assert
         Assert.AreEqual(60, Snake.LARGEUR_ECRAN);
     }
 
+    /// <summary>
+    /// calcul la hauteur de l'écran 
+    /// par rapport à la largeur de l'écran
+    /// </summary>
     [TestMethod]
     public void CalculerParametresHauteur()
     {
+        //Arrange
         Snake.HAUTEUR_TERRAIN = 20;
+
+        //Act
         Snake.CalculerParametres();
+
+        //Assert
         Assert.AreEqual(20, Snake.HAUTEUR_ECRAN);
     }
+
 
     /*****************************************************
          Test ChargerConfigurationParDefaut()
     *****************************************************/
+
+    /// <summary>
+    /// charge les configurations 
+    /// par défaut
+    /// </summary>
     [TestMethod]
     public void ChargerConfigurationParDefautOK()
     {
-
+        //Arrange
         Snake.LARGEUR_TERRAIN = 10;
         Snake.HAUTEUR_TERRAIN = 5;
         Snake.COULEUR_FOND = ConsoleColor.Red;
 
-        // Remet les valeurs par défaut
+        //Act
         Snake.ChargerConfigurationParDefaut();
 
-
+        //Assert
         Assert.AreEqual(30, Snake.LARGEUR_TERRAIN);
         Assert.AreEqual(20, Snake.HAUTEUR_TERRAIN);
         Assert.AreEqual(ConsoleColor.Black, Snake.COULEUR_FOND);
@@ -149,7 +188,7 @@ public class TestConfiguration
 
     /// <summary>
     /// La hauteur est remise par défaut  
-    /// car al ligne est ignorée dans le fichier
+    /// car la ligne est ignorée dans le fichier
     /// </summary>
     [TestMethod]
     public void TestLireConfigurationLignesIncorrecte()
