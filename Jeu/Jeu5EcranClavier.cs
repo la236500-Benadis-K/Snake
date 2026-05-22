@@ -501,10 +501,10 @@ On peut également visualiser les meilleurs scores et changer la configuration d
     public static void AfficherScoreCourant(Partie partie, int largeurMargeGauche)
     {
         string score = $"Score : {partie.Score}";
-        string vitesse = $"Vitesse : {partie.Vitesse}";
+        string vitesse = $"Vitesse : {partie.Vitesse} ";
 
         TimeSpan temps = DateTime.Now - partie.TempsPartie;
-        string duree = $"Durée : {temps.Seconds:D2}";
+        string duree = $"Durée : {temps.Seconds:D2} secondes";
 
 
         string texte = score.PadRight(LARGEUR_ECRAN / 3)
