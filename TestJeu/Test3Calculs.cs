@@ -60,6 +60,10 @@ public class TestCalcul
         Assert.AreEqual(tete.x, queue.x);
     }
 
+    /// <summary>
+    /// test de direction vers le bas
+    /// on vérifie que le serpent va vers le bas
+    /// </summary>
     [TestMethod]
     public void InitialiserPartieDirectionBas()
     {
@@ -84,6 +88,10 @@ public class TestCalcul
         Assert.AreEqual(tete.x, queue.x);
     }
 
+    /// <summary>
+    /// test de direction vers la gauche
+    /// on vérifie que le serpent va vers la gauche
+    /// </summary>
     [TestMethod]
     public void InitialiserPartieDirectionGauche()
     {
@@ -108,6 +116,10 @@ public class TestCalcul
         Assert.AreEqual(tete.y, queue.y);
     }
 
+    /// <summary>
+    /// test de direction vers la droite
+    /// on vérifie que le serpent va vers la droite
+    /// </summary>
     [TestMethod]
     public void InitialiserPartieDirectionDroite()
     {
@@ -169,6 +181,10 @@ public class TestCalcul
         Assert.AreEqual(ConsoleColor.White, Snake.COULEUR_BORD);
     }
 
+    /// <summary>
+    /// test de la vitesse
+    /// on vérfie que la vitesse s'incrémente bien de 1 
+    /// </summary>
     [TestMethod]
     public void VitesseInferieurAVitesseMax()
     {
@@ -184,6 +200,11 @@ public class TestCalcul
 
     }
 
+    /// <summary>
+    /// test de vitesse
+    /// on vérifie que la vitesse
+    /// ne dépasse pas la limite de 100
+    /// </summary>
     [TestMethod]
     public void VitesseEgalVitesseMax()
     {
@@ -198,7 +219,11 @@ public class TestCalcul
         Assert.AreEqual(100, partie.Vitesse);
     }
 
-
+/// <summary>
+/// test de caseOccupee
+/// on test une case pour voir si
+/// elle est occupée
+/// </summary>
     [TestMethod]
     public void CaseOccupee()
     {
@@ -219,6 +244,9 @@ public class TestCalcul
 
     }
 
+/// <summary>
+/// on test si une case est vide
+/// </summary>
     [TestMethod]
     public void CaseVide()
     {
@@ -235,7 +263,10 @@ public class TestCalcul
         Assert.IsFalse(resultat);
     }
 
-
+/// <summary>
+/// on vérifie si la case testée
+/// contient la queue
+/// </summary>
     [TestMethod]
     public void testerQueueTrue()
     {
@@ -268,6 +299,11 @@ public class TestCalcul
         Assert.IsFalse(resultat);
     }
 
+    /// <summary>
+    /// test demi tour du serpent
+    /// on vérifie que le serpent ne peux pas
+    /// faire demi-tour du haut vers le bas
+    /// </summary>
     [TestMethod]
     public void TestDemiTourHautBas()
     {
@@ -284,6 +320,11 @@ public class TestCalcul
     }
 
 
+    /// <summary>
+    /// test demi tour du serpent
+    /// on vérifie que le serpent ne peux pas
+    /// faire demi-tour de la gauche vers la droite
+    /// </summary>
     [TestMethod]
     public void TestDemiTourGaucheDroite()
     {
@@ -299,6 +340,11 @@ public class TestCalcul
         Assert.AreEqual(ancienneDirection, resultat);
     }
 
+    /// <summary>
+    /// test demi tour du serpent
+    /// on vérifie que le serpent ne peux pas
+    /// faire demi-tour du bas vers le haut
+    /// </summary>
     [TestMethod]
     public void TestDemiTourBasHaut()
     {
@@ -314,6 +360,11 @@ public class TestCalcul
         Assert.AreEqual(ancienneDirection, resultat);
     }
 
+    /// <summary>
+    /// test demi tour du serpent
+    /// on vérifie que le serpent ne peux pas
+    /// faire demi-tour de la droite vers la gauche
+    /// </summary>
     [TestMethod]
     public void TestDemiTourDroiteGauche()
     {
@@ -329,7 +380,9 @@ public class TestCalcul
         Assert.AreEqual(ancienneDirection, resultat);
     }
 
-
+/// <summary>
+/// test de direction valide
+/// </summary>
     [TestMethod]
     public void TestDirectionValide()
     {
@@ -345,6 +398,11 @@ public class TestCalcul
         Assert.AreEqual(nouvelleDirection, resultat);
     }
 
+/// <summary>
+/// test pour enlever la queue
+/// on vérifie qu'on enlève la queue
+/// quand le serpent avance mais ne mange pas
+/// </summary>
     [TestMethod]
     public void EnleverQueueTrue()
     {
@@ -364,6 +422,10 @@ public class TestCalcul
 
     }
 
+/// <summary>
+/// on enlève pas la queue
+/// quand le serpent mange un gateau
+/// </summary>
     [TestMethod]
     public void EnleverQueueFalse()
     {
@@ -383,6 +445,11 @@ public class TestCalcul
 
     }
 
+/// <summary>
+/// test pour ajouter un gâteau
+/// on vérifie que la case où va apparaître le gateau
+/// est vide
+/// </summary>
     [TestMethod]
     public void AjouterGateauCaseVide()
     {
@@ -404,6 +471,12 @@ public class TestCalcul
     /*************************************************
                 Test AvancerSerpent()
     **************************************************/
+    
+    /// <summary>
+    /// test de collision
+    /// on verifie que la partie s'arrête quand
+    /// le serpent fonce dans le mur du haut
+    /// </summary>
     [TestMethod]
     public void AvancerSerpentCollisionMurHaut()
     {
@@ -425,6 +498,11 @@ public class TestCalcul
         Assert.IsFalse(partie.PartieEnCours);// il cogne le bord donc le jeu s'arrête
     }
 
+    /// <summary>
+    /// test de collision
+    /// on verifie que la partie s'arrête quand
+    /// le serpent fonce dans le mur du bas
+    /// </summary>
     [TestMethod]
     public void AvancerSerpentCollisionMurBas()
     {
@@ -445,6 +523,11 @@ public class TestCalcul
         Assert.IsFalse(partie.PartieEnCours);
     }
 
+    /// <summary>
+    /// test de collision
+    /// on verifie que la partie s'arrête quand
+    /// le serpent fonce dans le mur de droite
+    /// </summary>
     [TestMethod]
     public void AvancerSerpentCollisionMurDroite()
     {
@@ -465,6 +548,11 @@ public class TestCalcul
         Assert.IsFalse(partie.PartieEnCours);//cogne le bord donc le jeu s'arrête
     }
 
+    /// <summary>
+    /// test de collision
+    /// on verifie que la partie s'arrête quand
+    /// le serpent fonce dans le mur de gauche
+    /// </summary>
     [TestMethod]
     public void AvancerSerpentCollisionMurGauche()
     {
@@ -487,6 +575,11 @@ public class TestCalcul
         Assert.IsFalse(partie.PartieEnCours);//cogne le bord donc le jeu s'arrête
     }
 
+    /// <summary>
+    /// test de collision
+    /// on verifie que la partie s'arrête quand
+    /// le serpent se mord lui même
+    /// </summary>
     [TestMethod]
     public void AvancerSerpentCollisionLuiMeme()
     {
@@ -513,6 +606,14 @@ public class TestCalcul
         Assert.IsFalse(partie.PartieEnCours);//colision donc le jeu s'arrête
     }
 
+    /// <summary>
+    /// test de gâteau
+    /// on verifie que le serpent grandit
+    /// que le score s'incrémente
+    /// qu'on enlève pas la queue
+    /// et que la vitesse se réinitialise
+    /// quand il mange un gâteau
+    /// </summary>
     [TestMethod]
     public void AvancerSerpentMangeGateau()
     {
@@ -544,6 +645,11 @@ public class TestCalcul
 
     }
 
+    /// <summary>
+    /// on vérifie que les valeurs restent les même
+    /// que la queue s'enlève
+    /// et que la vitesse accélère quand le serpent ne mange pas de gâteau
+    /// </summary>
     [TestMethod]
     public void AvancerSerpentMangePasGateau()
     {
