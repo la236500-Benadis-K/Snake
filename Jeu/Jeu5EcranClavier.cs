@@ -280,11 +280,6 @@ possible. La vitesse de déplacement augmente régulièrement et ne redevient
 lente que lorsque le serpent mange un gâteau.");
         Console.WriteLine();
 
-        AfficherTexteCentre(@"Le but du jeu est de faire avancer un serpent python en lui faisant manger
-des gâteaux qui le font grandir pour atteindre la plus grande taille
-possible. La vitesse de déplacement augmente régulièrement et ne redevient
-lente que lorsque le serpent mange un gâteau.");
-        Console.WriteLine();
 
         AfficherTexteCentre(@"Les commandes de déplacement sont les flèches du clavier.
 La partie se termine si le serpent cogne un bord ou se mord lui-même.");
